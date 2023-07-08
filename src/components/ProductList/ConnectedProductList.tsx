@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { fetchData } from '../../utils/apiClient'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { addProducts } from '../../app/store/features/handleProducts'
+import { addItemToCart } from '../../app/store/features/handleCart'
+import { fetchProducts } from '../../utils/apiClient'
 import { ProductList } from './ProductList'
-import { ProductType } from '../../types/product'
 
 export const ConnectedProductList = () => {
-    const [products, setProducts] = useState<ProductType[]>([])
+    const dispatch = useAppDispatch()
+    const storedProducts = useAppSelector((state) => state?.products?.items)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const onAddProduct = (
@@ -12,20 +15,30 @@ export const ConnectedProductList = () => {
         id: string
     ) => {
         event.preventDefault()
-        console.log('add to product', id)
+        dispatch(addItemToCart({ id }))
     }
 
+    /**
+     * @TODO Fix duplicated api call
+     */
     useEffect(() => {
-        setIsLoading(true)
-        fetchData().then((result) => {
-            setIsLoading(false)
-            setProducts(result?.data)
-        })
-    }, [])
+        const controller = new AbortController()
+        if (!storedProducts?.length && !isLoading) {
+            setIsLoading(true)
+            fetchProducts()
+                .then((result) => {
+                    setIsLoading(false)
+                    dispatch(addProducts(result?.data))
+                })
+                .catch((e) => console.log(e))
+        }
+
+        return () => controller.abort()
+    }, [storedProducts])
 
     return (
         <ProductList
-            products={products}
+            products={storedProducts}
             isLoading={isLoading}
             onAddProduct={onAddProduct}
         />

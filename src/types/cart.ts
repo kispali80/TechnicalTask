@@ -1,5 +1,4 @@
-export type CartSummaryItem = {
-    name: string
-    price: number
+export type CartItemType = {
+    id: string
     quantity: number
 }
