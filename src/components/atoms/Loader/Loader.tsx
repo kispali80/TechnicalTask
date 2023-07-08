@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { LoaderProps } from '../../types/loader'
+import { LoaderProps } from '~types/loader'
 
 export const Loader: FC<LoaderProps> = ({ isLoading }) => {
     if (!isLoading) {

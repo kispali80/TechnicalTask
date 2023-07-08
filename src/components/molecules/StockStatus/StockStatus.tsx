@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { ProductStockStatus } from '../../types/product'
+import { ProductStockStatus } from '~types/product'
 
 export const StockStatus: FC<ProductStockStatus> = ({ amount }) => {
     if (amount == 0) {

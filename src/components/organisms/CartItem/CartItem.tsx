@@ -1,15 +1,14 @@
 import React, { FC } from 'react'
-import { ProductProps } from '../../types/product'
-import { formatPrice } from '../../utils/formatter'
-import { StockStatus } from '../StockStatus/StockStatus'
+import { CartItemProps } from '~types/cart'
+import { Price } from '~atoms/Price/Price'
 
-export const Product: FC<ProductProps> = ({
+export const CartItem: FC<CartItemProps> = ({
     id,
     name,
     img,
     price,
-    availableAmount,
-    onAddProduct,
+    quantity,
+    onRemoveItem,
 }) => {
     return (
         <div className="flex flex-col md:flex-row">
@@ -22,16 +21,14 @@ export const Product: FC<ProductProps> = ({
                         {name}
                     </h5>
                 </div>
-                <div className="flex-auto text-lg font-medium text-slate-500">
-                    {formatPrice(price)}
-                </div>
-                <StockStatus amount={availableAmount} />
+                <Price value={price} />
+                <p>Qty: {quantity}</p>
                 <div className="flex space-x-4 mt-4 mb-5 text-sm font-medium">
                     <button
                         className="flex-none w-full h-12 uppercase font-medium tracking-wider bg-slate-900 text-white"
-                        onClick={(event) => onAddProduct(event, id)}
+                        onClick={(event) => onRemoveItem(event, id)}
                     >
-                        Add to Cart
+                        Remove from Cart
                     </button>
                 </div>
             </form>

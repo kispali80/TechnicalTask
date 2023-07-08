@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "~atoms/*": ["./src/components/atoms/*"],
+      "~molecules/*": ["./src/components/molecules/*"],
+      "~organisms/*": ["./src/components/organisms/*"],
+      "~types/*": ["./src/types/*"],
+      "~app/*": ["./src/app/*"],
+      "~utils/*": ["./src/utils/*"],
+      "~layout/*": ["./src/layout/*"]
+    }
+  }
+}

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { addProducts } from '../../app/store/features/handleProducts'
-import { addItemToCart } from '../../app/store/features/handleCart'
-import { fetchProducts } from '../../utils/apiClient'
+import { useAppDispatch, useAppSelector } from '~app/hooks'
+import { addProducts } from '~app/store/features/handleProducts'
+import { addItemToCart } from '~app/store/features/handleCart'
+import { fetchProducts } from '~utils/apiClient'
 import { ProductList } from './ProductList'
 
 export const ConnectedProductList = () => {
@@ -10,6 +10,11 @@ export const ConnectedProductList = () => {
     const storedProducts = useAppSelector((state) => state?.products?.items)
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
+    /**
+     * @TODO Add logic for amount check
+     * @param event
+     * @param id
+     */
     const onAddProduct = (
         event: React.MouseEvent<HTMLButtonElement>,
         id: string

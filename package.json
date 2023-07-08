@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^7.1.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -20,6 +21,8 @@
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.14.1",
     "react-scripts": "5.0.1",
+    "redux-persist": "^6.0.0",
+    "stylelint": "^15.10.1",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.1.6",
     "web-vitals": "^2.1.0"
@@ -28,12 +31,15 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "yarn eslint --ext .jsx,.js,.ts,.tsx ./",
-    "lint:fix": "yarn eslint --ext .jsx,.js,.ts,.tsx ./ --fix"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "lint": "yarn lint:scripts && yarn styles",
+    "lint:scripts": "yarn eslint --ext .jsx,.js,.ts,.tsx ./",
+    "lint:scripts:fix": "yarn eslint --ext .jsx,.js,.ts,.tsx ./ --fix",
+    "lint:styles": "yarn stylelint **/*.scss",
+    "lint:styles:fix": "yarn stylelint **/*.scss --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +64,7 @@
     "@typescript-eslint/parser": "^5.61.0",
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-prettier": "^5.0.0-alpha.1"
+    "eslint-plugin-prettier": "^5.0.0-alpha.1",
+    "stylelint-config-standard-scss": "^10.0.0"
   }
 }

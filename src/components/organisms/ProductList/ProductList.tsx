@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import { ProductListProps } from '../../types/product'
-import { Loader } from '../Loader/Loader'
+import { ProductListProps } from '~types/product'
+import { Loader } from '~atoms/Loader/Loader'
 import { Product } from '../Product/Product'
 
 export const ProductList: FC<ProductListProps> = ({

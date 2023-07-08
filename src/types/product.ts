@@ -20,6 +20,10 @@ export interface ProductStockStatus {
     amount: number
 }
 
+export interface ProductPriceProps {
+    value: number
+}
+
 export type ProductType = {
     id: string
     name: string

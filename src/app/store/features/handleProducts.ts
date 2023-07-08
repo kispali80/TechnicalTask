@@ -23,10 +23,5 @@ export const handleProducts = createSlice({
 })
 
 export const { addProduct, addProducts } = handleProducts.actions
-export const getProductById = (productId: string) =>
-    useSelector(
-        (state: ProductsState) =>
-            state?.items?.find(({ id }) => id === productId)
-    )
 
 export default handleProducts.reducer

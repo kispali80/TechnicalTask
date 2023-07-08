@@ -13,12 +13,16 @@ export const handleCart = createSlice({
     initialState,
     reducers: {
         addItemToCart: (state, action) => {
-            console.log(action.payload)
-            state.items.push({ id: action.payload.id, quantity: 1 })
+            if (
+                state?.items?.length === 0 ||
+                state?.items?.find((id) => id !== action?.payload?.id)
+            ) {
+                state.items.push({ id: action.payload.id, quantity: 1 })
+            }
         },
         removeItemFromCart: (state, action) => {
             state.items = state.items.filter(
-                (productId) => action.payload.id !== productId
+                (product) => action.payload.id !== product.id
             )
         },
         emptyCart: (state) => {

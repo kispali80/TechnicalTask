@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
-import Header from '../components/Header/Header'
-import Footer from '../components/Footer/Footer'
-import { LayoutProps } from '../types/layout'
-import { Sidebar } from '../components/Sidebar/Sidebar'
+import Header from '~organisms/Header/Header'
+import Footer from '~organisms/Footer/Footer'
+import { LayoutProps } from '~types/layout'
+import { Sidebar } from '~organisms/Sidebar/Sidebar'
 
 export const ProductsLayout: FC<LayoutProps> = ({ children }) => {
     return (
