@@ -16,6 +16,10 @@ export type CartItemProps = CartProductsType & {
     ) => void
 }
 
+export interface MinicartProps {
+    amount?: number
+}
+
 export type CartItemType = {
     id: string
     quantity: number

@@ -14,7 +14,7 @@ export const ErrorMessageItem: FC<ErrorMessageItemProps> = ({
     return (
         <>
             <div
-                className="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
+                className="bg-red-100 border-t-4 border-red-600 rounded-b text-teal-600 px-4 py-3 shadow-md"
                 role="alert"
             >
                 <div className="flex">

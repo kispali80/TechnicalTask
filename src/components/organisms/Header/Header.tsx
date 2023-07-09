@@ -9,14 +9,14 @@ export default function Header() {
                 <div className="logo">
                     <Link to="/">
                         <img
-                            className="w-8"
+                            className="w-8 xl:w-auto xl:h-16"
                             src="/logo192.png"
                             alt="Logo"
-                            title="Technical Task home page"
+                            title="eCommerce Application home page"
                         />
                     </Link>
                 </div>
-                <p className="sm:ml-40 md:ml-44 text-2xl">Technical Task</p>
+                <p className="sm:ml-40 md:ml-44 text-2xl">eCommerce App</p>
                 <Navigation />
             </div>
         </header>

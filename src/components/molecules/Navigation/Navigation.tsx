@@ -1,7 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useAppSelector } from '~app/hooks'
+import { Minicart } from '~atoms/Minicart/Minicart'
 
 export default function Navigation() {
+    const storedCartItems = useAppSelector((state) => state?.cart?.items)
+
     return (
         <nav>
             <ul className="flex items-center">
@@ -21,19 +25,7 @@ export default function Navigation() {
                     </Link>
                 </li>
                 <li>
-                    <Link
-                        className="flex items-center"
-                        to="/cart"
-                        title="Shopping Cart"
-                    >
-                        <span className="mr-1 hidden sm:inline">Cart</span>
-                        <img
-                            className="w-8"
-                            src="/shopping-cart.png"
-                            alt="Shopping Cart"
-                            title="Shopping Cart"
-                        />
-                    </Link>
+                    <Minicart amount={storedCartItems?.length} />
                 </li>
             </ul>
         </nav>

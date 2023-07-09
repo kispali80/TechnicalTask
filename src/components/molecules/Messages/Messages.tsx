@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import { MessageProps } from '~types/message'
-import { SuccessMessageItem } from '~atoms/MessageItem/SuccessMessageItem'
-import { ErrorMessageItem } from '~atoms/MessageItem/ErrorMessageItem'
+import { SuccessMessageItem, ErrorMessageItem } from '~atoms/MessageItem'
 import { MESSAGE_TYPE_ERROR, MESSAGE_TYPE_SUCCESS } from '~constants/messages'
 import { useAppDispatch } from '~app/hooks'
 import {
@@ -48,14 +47,30 @@ export const Messages: FC<MessageProps> = ({
         return null
     }
 
-    switch (type) {
-        case MESSAGE_TYPE_SUCCESS:
-            return <SuccessMessageItem message={message} />
+    const renderMessageItem = () => {
+        switch (type) {
+            case MESSAGE_TYPE_SUCCESS:
+                return <SuccessMessageItem message={message} />
 
-        case MESSAGE_TYPE_ERROR:
-            return <ErrorMessageItem message={message} code={code} />
+            case MESSAGE_TYPE_ERROR:
+                return <ErrorMessageItem message={message} code={code} />
 
-        default:
-            return null
+            default:
+                return null
+        }
     }
+
+    return (
+        <div
+            id="popup-modal"
+            tabIndex={-1}
+            className="fixed top-24 left-0 sm:left-[calc(50%-250px)] right-0 z-50 p-4 overflow-x-hidden overflow-y-auto h-[calc(100%-1rem)] max-h-full"
+        >
+            <div className="relative w-full max-w-md max-h-full">
+                <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    {renderMessageItem()}
+                </div>
+            </div>
+        </div>
+    )
 }
