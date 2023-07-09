@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import { MessageProps } from '~types/message'
 import { SuccessMessageItem } from '~atoms/MessageItem/SuccessMessageItem'
 import { ErrorMessageItem } from '~atoms/MessageItem/ErrorMessageItem'

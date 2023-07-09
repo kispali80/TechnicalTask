@@ -8,7 +8,9 @@ export const CartLayout: FC<LayoutProps> = ({ children }) => {
     return (
         <>
             <Header />
-            {children}
+            <main className="max-w-3xl min-h-screen md:ml-auto md:mr-auto mx-2 pt-20">
+                {children}
+            </main>
             <Footer />
             <ConnectedMessages />
         </>

@@ -1,7 +1,0 @@
-@layer components {
-  .header {
-    @apply bg-color-white;
-    position: fixed;
-    z-index: var(--zIndex-header);
-  }
-}

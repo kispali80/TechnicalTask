@@ -10,12 +10,12 @@ export const Cart: FC<CartProps> = ({ items, isLoading, onRemoveItem }) => {
 
     return (
         <>
-            <h1>Cart items</h1>
+            <h1 className="mb-12 text-3xl text-center">Cart items</h1>
             <Loader isLoading={isLoading} />
             {!isLoading && items?.length && (
                 <ul className="flex flex-col md:flex-row md:flex-wrap md:justify-between">
                     {items.map((item) => (
-                        <li className="md:w-{50%} xl:w-{33.33%}">
+                        <li className="w-full mb-14">
                             <CartItem {...item} onRemoveItem={onRemoveItem} />
                         </li>
                     ))}

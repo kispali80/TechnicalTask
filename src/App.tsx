@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { HomePage } from './pages/home'
 import { ProductsPage } from './pages/products'
 import { CartPage } from './pages/cart'
+
 function App() {
     return (
         <Routes>

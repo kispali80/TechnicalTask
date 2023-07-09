@@ -14,12 +14,12 @@ export const ProductList: FC<ProductListProps> = ({
 
     return (
         <>
-            <h1>Product list</h1>
+            <h1 className="mb-12 text-3xl text-center">Product list</h1>
             <Loader isLoading={isLoading} />
             {!isLoading && products?.length && (
                 <ul className="flex flex-col md:flex-row md:flex-wrap md:justify-between">
                     {products.map((product) => (
-                        <li className="md:w-{50%} xl:w-{33.33%}">
+                        <li className="md:w-1/2 lg:w-1/3 mb-14">
                             <Product {...product} onAddProduct={onAddProduct} />
                         </li>
                     ))}

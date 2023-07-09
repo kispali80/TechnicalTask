@@ -12,15 +12,17 @@ export const Product: FC<ProductProps> = ({
     onAddProduct,
 }) => {
     return (
-        <div className="flex flex-col md:flex-row">
-            <div className="w-full md:w-52 relative">
-                {img && <img src={img} alt={name} title={name} />}
+        <div className="flex flex-col shadow-md">
+            <div className="w-auto m-auto mb-4 text-center">
+                {img && (
+                    <img className="h-40" src={img} alt={name} title={name} />
+                )}
             </div>
             <form className="flex-auto p:2 md:p-4" method="POST">
-                <div className="flex flex-wrap items-baseline">
-                    <h5 className="w-full flex-none mb-3 text-2xl leading-none text-slate-900">
+                <div className="flex flex-wrap items-baseline text-center xl:text-left">
+                    <h4 className="w-full flex-none mb-3 text-2xl leading-none text-slate-900">
                         {name}
-                    </h5>
+                    </h4>
                 </div>
                 <Price value={price} />
                 <StockStatus amount={availableAmount} />
