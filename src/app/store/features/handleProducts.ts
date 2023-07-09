@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ProductType } from '../../../types/product'
-import { useSelector } from 'react-redux'
+import { ProductType } from '~types/product'
 
 interface ProductsState {
     items: ProductType[]

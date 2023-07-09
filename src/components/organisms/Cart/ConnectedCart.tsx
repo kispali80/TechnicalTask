@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '~app/hooks'
 import { removeItemFromCart } from '~app/store/features/handleCart'
+import {
+    addErrorMessage,
+    addSuccessMessage,
+} from '~app/store/features/handleMessages'
 import { Cart } from './Cart'
 import { formatCartItems } from '~utils/formatter'
 import { CartProductsType } from '~types/cart'
 
+/**
+ * Cart component for handling stored items and related products logic
+ * @constructor
+ */
 export const ConnectedCart = () => {
     const dispatch = useAppDispatch()
     const storedCartItems = useAppSelector((state) => state?.cart?.items)
@@ -17,7 +25,22 @@ export const ConnectedCart = () => {
         id: string
     ) => {
         event.preventDefault()
-        dispatch(removeItemFromCart({ id }))
+        try {
+            dispatch(removeItemFromCart({ id }))
+            dispatch(
+                addSuccessMessage({
+                    message:
+                        'Product has been successfully removed from your cart',
+                })
+            )
+        } catch (e) {
+            dispatch(
+                addErrorMessage({
+                    message:
+                        'There has been an error while trying to remove the product from your cart',
+                })
+            )
+        }
     }
 
     useEffect(() => {

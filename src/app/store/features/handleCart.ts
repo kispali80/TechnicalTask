@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { CartItemType } from '../../../types/cart'
+import { CartItemType } from '~types/cart'
 
 interface CartState {
     items: CartItemType[]

@@ -4,6 +4,10 @@ import { addProducts } from '~app/store/features/handleProducts'
 import { addItemToCart } from '~app/store/features/handleCart'
 import { fetchProducts } from '~utils/apiClient'
 import { ProductList } from './ProductList'
+import {
+    addErrorMessage,
+    addSuccessMessage,
+} from '~app/store/features/handleMessages'
 
 export const ConnectedProductList = () => {
     const dispatch = useAppDispatch()
@@ -20,7 +24,21 @@ export const ConnectedProductList = () => {
         id: string
     ) => {
         event.preventDefault()
-        dispatch(addItemToCart({ id }))
+        try {
+            dispatch(addItemToCart({ id }))
+            dispatch(
+                addSuccessMessage({
+                    message: 'Product has been successfully added to your cart',
+                })
+            )
+        } catch (e) {
+            dispatch(
+                addErrorMessage({
+                    message:
+                        'There has been an error while trying to add the product to your cart',
+                })
+            )
+        }
     }
 
     /**

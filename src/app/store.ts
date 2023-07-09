@@ -3,6 +3,7 @@ import storage from 'redux-persist/lib/storage'
 import { persistReducer, persistStore } from 'redux-persist'
 import handleProductsReducer from './store/features/handleProducts'
 import handleCartReducer from './store/features/handleCart'
+import handleMessagesReducer from './store/features/handleMessages'
 
 const persistProductsConfig = {
     key: 'product',
@@ -27,6 +28,7 @@ export const store = configureStore({
     reducer: {
         products: persistedProductsReducer,
         cart: persistedCartReducer,
+        messages: handleMessagesReducer,
     },
 })
 

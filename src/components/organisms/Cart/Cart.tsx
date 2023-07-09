@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { CartProps } from '~types/cart'
-import { CartItem } from '~organisms/CartItem/CartItem'
+import { CartItem } from '~molecules/CartItem/CartItem'
 import { Loader } from '~atoms/Loader/Loader'
 
 export const Cart: FC<CartProps> = ({ items, isLoading, onRemoveItem }) => {

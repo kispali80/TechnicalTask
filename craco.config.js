@@ -8,6 +8,7 @@ module.exports = {
             "~types": path.resolve(__dirname, 'src/types'),
             "~app": path.resolve(__dirname, 'src/app'),
             "~utils": path.resolve(__dirname, 'src/utils'),
+            "~constants": path.resolve(__dirname, 'src/constants'),
             "~layout": path.resolve(__dirname, 'src/layout')
         },
     },
