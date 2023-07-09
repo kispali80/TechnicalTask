@@ -29,6 +29,7 @@ export const ConnectedMessages = () => {
                 type={MESSAGE_TYPE_ERROR}
                 autoRemove
                 message={storedErrorMessage?.message}
+                code={storedErrorMessage?.code}
             />
         )
     }

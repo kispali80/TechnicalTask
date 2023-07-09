@@ -20,7 +20,7 @@ export const Product: FC<ProductProps> = ({
     }
 
     return (
-        <div className="flex flex-col shadow-md">
+        <div className="flex flex-col my-4 mx-2 shadow-md">
             <div className="w-auto m-auto mb-4 text-center">
                 {img && (
                     <img className="h-40" src={img} alt={name} title={name} />
@@ -52,6 +52,7 @@ export const Product: FC<ProductProps> = ({
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="amount"
                         required
+                        disabled={availableAmount === 0}
                         onChange={onChangeAmount}
                     />
                 </div>

@@ -12,7 +12,7 @@ import {
     addErrorMessage,
     addSuccessMessage,
 } from '~app/store/features/handleMessages'
-import { canAddItem } from '~utils/cart'
+import { validateAddItem } from '~utils/cart'
 
 export const ConnectedProductList = () => {
     const dispatch = useAppDispatch()
@@ -34,7 +34,6 @@ export const ConnectedProductList = () => {
                     addErrorMessage({
                         message:
                             'There was an error while trying to get the product list',
-                        code: 'CART-ERR-001',
                     })
                 )
             })
@@ -53,7 +52,12 @@ export const ConnectedProductList = () => {
         event.preventDefault()
         try {
             // Check if the add to cart is possible
-            if (canAddItem(storedProducts, id, amountAdded)) {
+            const validateResult = validateAddItem(
+                storedProducts,
+                id,
+                amountAdded
+            )
+            if (validateResult.isValid) {
                 const product = storedProducts?.find(
                     (product) => product?.id === id
                 )
@@ -72,12 +76,14 @@ export const ConnectedProductList = () => {
                         })
                     )
                 }
-            } else {
+            }
+
+            if (!validateResult.isValid && validateResult.error) {
                 dispatch(
                     addErrorMessage({
                         message:
                             'Sorry, you cannot add this product to the cart',
-                        code: 'CART-ERR-002',
+                        code: validateResult.error,
                     })
                 )
             }
@@ -86,7 +92,6 @@ export const ConnectedProductList = () => {
                 addErrorMessage({
                     message:
                         'There has been an error while trying to add the product to your cart',
-                    code: 'CART-ERR-003',
                 })
             )
         }

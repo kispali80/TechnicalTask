@@ -17,9 +17,9 @@ export const ErrorMessageItem: FC<ErrorMessageItemProps> = ({
                 className="bg-red-100 border-t-4 border-red-600 rounded-b text-red-900 px-4 py-3 shadow-md"
                 role="alert"
             >
-                <div className="flex">
-                    <p className="font-bold">{message}</p>
-                    {code && <p className="text-sm">Error code: {code}</p>}
+                <div className="flex flex-col">
+                    <p className="font-bold mb-2">{message}</p>
+                    {code && <p className="text-sm">{code}</p>}
                 </div>
             </div>
         </>

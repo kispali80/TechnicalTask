@@ -16,7 +16,7 @@ import {
 import { Cart } from './Cart'
 import { formatCartItems } from '~utils/formatter'
 import { CartProductsType } from '~types/cart'
-import { canUpdateItem } from '~utils/cart'
+import { validateUpdateItem } from '~utils/cart'
 
 /**
  * Cart component for handling stored items and related products logic
@@ -60,7 +60,6 @@ export const ConnectedCart = () => {
                 addErrorMessage({
                     message:
                         'There has been an error while trying to remove the product from your cart',
-                    code: 'CART-ERR-001',
                 })
             )
         }
@@ -73,7 +72,13 @@ export const ConnectedCart = () => {
     ) => {
         event.preventDefault()
         try {
-            if (canUpdateItem(storedProducts, cartItems, id, amountUpdated)) {
+            const validateResult = validateUpdateItem(
+                storedProducts,
+                cartItems,
+                id,
+                amountUpdated
+            )
+            if (validateResult.isValid) {
                 const product = storedProducts?.find(
                     (product) => product?.id === id
                 )
@@ -95,11 +100,13 @@ export const ConnectedCart = () => {
                         })
                     )
                 }
-            } else {
+            }
+
+            if (!validateResult.isValid && validateResult.error) {
                 dispatch(
                     addErrorMessage({
-                        message: 'The cart cannot be updated currently',
-                        code: 'CART-ERR-002',
+                        message: 'The cart cannot be updated',
+                        code: validateResult.error,
                     })
                 )
             }
@@ -108,7 +115,6 @@ export const ConnectedCart = () => {
                 addErrorMessage({
                     message:
                         'There has been an error while trying to update your cart',
-                    code: 'CART-ERR-003',
                 })
             )
         }
@@ -129,7 +135,6 @@ export const ConnectedCart = () => {
                 addErrorMessage({
                     message:
                         'There has been an error while trying to remove the items from your cart',
-                    code: 'CART-ERR-004',
                 })
             )
         }

@@ -25,7 +25,7 @@ export const CartItem: FC<CartItemProps> = ({
                 )}
             </div>
             <form
-                className="md:flex md:justify-between w-full sm:w-1/2 flex-auto p:2 md:p-4"
+                className="md:flex md:justify-between w-full sm:w-1/2 flex-auto p-4 md:p-2"
                 method="POST"
             >
                 <div className="md:flex md:flex-col md:justify-center md:w-1/2">

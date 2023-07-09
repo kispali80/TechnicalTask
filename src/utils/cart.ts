@@ -1,55 +1,66 @@
 import { ProductType } from '~types/product'
 import { CartItemType, CartProductsType } from '~types/cart'
 
-export const canAddItem = (
+const validateItem = (
     products: ProductType[],
     productId: string,
     amountAdded: number
-): boolean => {
+) => {
+    let error = ''
+
     // No amount specified
     if (!amountAdded) {
-        return false
+        error = 'You have to to specify more than 0 amount'
     }
 
     const product = products?.find((product) => product?.id === productId)
     if (product) {
         const { availableAmount, minOrderAmount } = product
-        if (
-            availableAmount >= minOrderAmount &&
-            amountAdded >= minOrderAmount &&
-            amountAdded <= availableAmount
-        ) {
-            return true
+        if (amountAdded < minOrderAmount) {
+            error =
+                'The updated amount must be greater or equal than minimum order amount'
+        }
+
+        if (amountAdded > availableAmount) {
+            error = 'You cannot add more than the available amount'
         }
     }
 
-    return false
+    return {
+        isValid: !error,
+        error,
+    }
 }
 
-export const canUpdateItem = (
+export const validateAddItem = (
+    products: ProductType[],
+    productId: string,
+    amountAdded: number
+) => {
+    return validateItem(products, productId, amountAdded)
+}
+
+export const validateUpdateItem = (
     products: ProductType[],
     cartItems: CartItemType[],
     productId: string,
     amountUpdated: number
 ) => {
-    // No amount specified
-    if (!amountUpdated) {
-        return false
-    }
-
+    let error = undefined
+    const validate = validateItem(products, productId, amountUpdated)
     const product = products?.find((product) => product?.id === productId)
     const cartItem = cartItems?.find((item) => item?.id === productId)
     if (product && cartItem) {
-        const { availableAmount, minOrderAmount } = product
-        if (
-            availableAmount + cartItem?.amount >= amountUpdated &&
-            amountUpdated >= minOrderAmount
-        ) {
-            return true
+        const { availableAmount } = product
+        if (availableAmount + cartItem?.amount <= amountUpdated) {
+            error = 'You cannot add more than the available amount'
         }
     }
 
-    return false
+    return {
+        ...validate,
+        ...(error && { error }),
+    }
 }
 
 export const getTotals = (cartItems: CartProductsType[]) => {
