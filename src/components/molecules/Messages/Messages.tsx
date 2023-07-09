@@ -64,9 +64,9 @@ export const Messages: FC<MessageProps> = ({
         <div
             id="popup-modal"
             tabIndex={-1}
-            className="fixed top-24 left-0 sm:left-[calc(50%-250px)] right-0 z-50 p-4 overflow-x-hidden overflow-y-auto h-[calc(100%-1rem)] max-h-full"
+            className="fixed top-24 left-0 sm:left-[calc(50%-250px)] right-0 z-50 p-4 overflow-x-hidden overflow-y-hidden w-5/6 sm:w-96 h-18"
         >
-            <div className="relative w-full max-w-md max-h-full">
+            <div className="relative w-full max-w-md max-h-full animation-fadeOut">
                 <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     {renderMessageItem()}
                 </div>

@@ -7,6 +7,7 @@ export type CartProps = {
         event: React.MouseEvent<HTMLButtonElement>,
         id: string
     ) => void
+    onRemoveAll: () => void
 }
 
 export type CartItemProps = CartProductsType & {
@@ -20,9 +21,13 @@ export interface MinicartProps {
     amount?: number
 }
 
+export interface CartTotalsProps {
+    items: CartProductsType[]
+}
+
 export type CartItemType = {
     id: string
-    quantity: number
+    amount: number
 }
 
 export type CartProductsType = CartItemType & {

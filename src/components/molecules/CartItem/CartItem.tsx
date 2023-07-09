@@ -7,7 +7,7 @@ export const CartItem: FC<CartItemProps> = ({
     name,
     img,
     price,
-    quantity,
+    amount,
     onRemoveItem,
 }) => {
     return (
@@ -26,18 +26,18 @@ export const CartItem: FC<CartItemProps> = ({
                 className="md:flex md:justify-between w-full sm:w-1/2 flex-auto p:2 md:p-4"
                 method="POST"
             >
-                <div className="md:flex md:flex-col md:w-1/2">
-                    <div className="flex flex-wrap items-baseline">
-                        <h5 className="w-full flex-none mb-3 text-2xl leading-none text-slate-900">
-                            {name}
-                        </h5>
-                    </div>
-                    <Price value={price} />
-                    <p>Qty: {quantity}</p>
+                <div className="md:flex md:flex-col md:justify-center md:w-1/2">
+                    <h5 className="w-full flex-none mb-3 text-2xl leading-none text-slate-500">
+                        {name}
+                    </h5>
+                    <Price value={price} amount={amount} />
+                    <p className="leading-6 font-medium uppercase text-slate-500">
+                        Qty: {amount}
+                    </p>
                 </div>
                 <div className="flex md:w-1/2 md:items-center sm:max-w-xs space-x-4 mt-4 mb-4 text-sm font-medium">
                     <button
-                        className="flex-none w-full h-12 uppercase font-medium tracking-wider bg-slate-900 text-white"
+                        className="flex-none w-full h-12 uppercase font-medium tracking-wider bg-slate-900 text-white hover:bg-slate-700"
                         onClick={(event) => onRemoveItem(event, id)}
                     >
                         Remove

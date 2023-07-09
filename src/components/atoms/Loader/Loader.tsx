@@ -13,9 +13,14 @@ export const Loader: FC<LoaderProps> = ({ isLoading }) => {
 
     if (isLoading) {
         return (
-            <>
-                <img src="/loading.gif" alt="Loading" title="Loading" />
-            </>
+            <div className="w-20 m-auto">
+                <img
+                    className="h-20"
+                    src="/loading.gif"
+                    alt="Loading"
+                    title="Loading"
+                />
+            </div>
         )
     }
 }

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '~app/hooks'
-import { removeItemFromCart } from '~app/store/features/handleCart'
+import { emptyCart, removeItemFromCart } from '~app/store/features/handleCart'
+import {
+    increaseProductAmount,
+    setForceRefresh,
+} from '~app/store/features/handleProducts'
 import {
     addErrorMessage,
     addSuccessMessage,
@@ -26,7 +30,19 @@ export const ConnectedCart = () => {
     ) => {
         event.preventDefault()
         try {
+            const product = storedProducts?.find(
+                (product) => product?.id === id
+            )
+            const cartItem = storedCartItems?.find((item) => item?.id === id)
             dispatch(removeItemFromCart({ id }))
+            if (product && cartItem) {
+                dispatch(
+                    increaseProductAmount({
+                        id,
+                        amount: product?.minOrderAmount * cartItem?.amount,
+                    })
+                )
+            }
             dispatch(
                 addSuccessMessage({
                     message:
@@ -38,6 +54,28 @@ export const ConnectedCart = () => {
                 addErrorMessage({
                     message:
                         'There has been an error while trying to remove the product from your cart',
+                    code: 'ERR005',
+                })
+            )
+        }
+    }
+
+    const onRemoveAll = () => {
+        try {
+            dispatch(emptyCart())
+            dispatch(setForceRefresh({ refresh: true }))
+            dispatch(
+                addSuccessMessage({
+                    message:
+                        'All items have been successfully removed from your cart',
+                })
+            )
+        } catch (e) {
+            dispatch(
+                addErrorMessage({
+                    message:
+                        'There has been an error while trying to remove the items from your cart',
+                    code: 'ERR004',
                 })
             )
         }
@@ -60,6 +98,7 @@ export const ConnectedCart = () => {
             items={cartItems}
             isLoading={isLoading}
             onRemoveItem={onRemoveItem}
+            onRemoveAll={onRemoveAll}
         />
     )
 }

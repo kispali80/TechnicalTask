@@ -7,6 +7,7 @@ export type ProductListProps = {
         event: React.MouseEvent<HTMLButtonElement>,
         id: string
     ) => void
+    onForceRefresh: () => void
 }
 
 export type ProductProps = ProductType & {
@@ -17,11 +18,13 @@ export type ProductProps = ProductType & {
 }
 
 export interface ProductStockStatus {
-    amount: number
+    availableAmount: number
+    minOrderAmount: number
 }
 
 export interface ProductPriceProps {
     value: number
+    amount?: number
 }
 
 export type ProductType = {

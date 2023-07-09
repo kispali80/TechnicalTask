@@ -13,11 +13,34 @@ export const handleCart = createSlice({
     initialState,
     reducers: {
         addItemToCart: (state, action) => {
-            if (
-                state?.items?.length === 0 ||
-                state?.items?.find((id) => id !== action?.payload?.id)
-            ) {
-                state.items.push({ id: action.payload.id, quantity: 1 })
+            if (!state?.items?.length) {
+                state.items.push({
+                    id: action.payload.id,
+                    amount: action?.payload?.amount,
+                })
+            } else {
+                const currentItem = state?.items?.find(
+                    (item) => item?.id == action?.payload?.id
+                )
+                if (currentItem) {
+                    const updatedItem = {
+                        ...currentItem,
+                        amount: currentItem?.amount + action?.payload?.amount,
+                    }
+                    const updatedItems = state?.items?.map((item) => {
+                        if (item?.id === action?.payload?.id) {
+                            return updatedItem
+                        }
+                        return item
+                    })
+
+                    state.items = updatedItems
+                } else {
+                    state.items.push({
+                        id: action.payload.id,
+                        amount: action?.payload?.amount,
+                    })
+                }
             }
         },
         removeItemFromCart: (state, action) => {

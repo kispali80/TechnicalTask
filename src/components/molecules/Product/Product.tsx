@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { ProductProps } from '~types/product'
 import { StockStatus } from '~molecules/StockStatus/StockStatus'
 import { Price } from '~atoms/Price/Price'
+import { AddToCartButton } from '~atoms/AddToCartButton/AddToCartButton'
 
 export const Product: FC<ProductProps> = ({
     id,
@@ -9,6 +10,7 @@ export const Product: FC<ProductProps> = ({
     img,
     price,
     availableAmount,
+    minOrderAmount,
     onAddProduct,
 }) => {
     return (
@@ -20,19 +22,21 @@ export const Product: FC<ProductProps> = ({
             </div>
             <form className="flex-auto p:2 md:p-4" method="POST">
                 <div className="flex flex-wrap items-baseline text-center xl:text-left">
-                    <h4 className="w-full flex-none mb-3 text-2xl leading-none text-slate-900">
+                    <h4 className="w-full flex-none mb-3 text-2xl leading-none text-slate-500">
                         {name}
                     </h4>
                 </div>
                 <Price value={price} />
-                <StockStatus amount={availableAmount} />
+                <StockStatus
+                    availableAmount={availableAmount}
+                    minOrderAmount={minOrderAmount}
+                />
                 <div className="flex space-x-4 mt-4 mb-5 text-sm font-medium">
-                    <button
-                        className="flex-none w-full h-12 uppercase font-medium tracking-wider bg-slate-900 text-white"
-                        onClick={(event) => onAddProduct(event, id)}
-                    >
-                        Add to Cart
-                    </button>
+                    <AddToCartButton
+                        id={id}
+                        availableAmount={availableAmount}
+                        onAddProduct={onAddProduct}
+                    />
                 </div>
             </form>
         </div>

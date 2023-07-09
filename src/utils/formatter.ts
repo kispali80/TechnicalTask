@@ -1,8 +1,9 @@
 import { ProductType } from '~types/product'
 import { CartItemType, CartProductsType } from '~types/cart'
 
-export const formatPrice = (price: number) => {
-    return `${price}€`
+export const formatPrice = (price: number, amount: number) => {
+    const value = price * amount
+    return `${value}€`
 }
 
 export const formatCartItems = (
@@ -13,12 +14,13 @@ export const formatCartItems = (
     const result: CartProductsType[] = []
     products?.map((product) => {
         if (productIds.includes(product?.id)) {
+            const cartItem = cartItems?.find((item) => item?.id == product?.id)
             result.push({
                 id: product.id,
                 name: product.name,
                 img: product.img,
                 price: product.price,
-                quantity: 1,
+                amount: cartItem?.amount || 0,
             })
         }
     })

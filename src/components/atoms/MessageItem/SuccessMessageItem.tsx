@@ -16,7 +16,7 @@ export const SuccessMessageItem: FC<SuccessMessageItemProps> = ({
                 role="alert"
             >
                 <div className="flex">
-                    <p className="font-bold">{message}</p>
+                    <p className="font-bold text-center">{message}</p>
                 </div>
             </div>
         </>

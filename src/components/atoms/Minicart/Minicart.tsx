@@ -22,7 +22,7 @@ export const Minicart: FC<MinicartProps> = ({ amount }) => {
                 alt="Shopping Cart"
                 title="Shopping Cart"
             />
-            {amount && amount > 0 && (
+            {!!amount && amount > 0 && (
                 <div className="absolute w-4 top-0 right-0 z-20 bg-slate-900 text-white rounded-xl text-center text-xs">
                     {amount}
                 </div>
