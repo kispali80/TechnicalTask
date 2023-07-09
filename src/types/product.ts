@@ -5,7 +5,8 @@ export type ProductListProps = {
     isLoading: boolean
     onAddProduct: (
         event: React.MouseEvent<HTMLButtonElement>,
-        id: string
+        id: string,
+        amountAdded: number
     ) => void
     onForceRefresh: () => void
 }
@@ -13,7 +14,8 @@ export type ProductListProps = {
 export type ProductProps = ProductType & {
     onAddProduct: (
         event: React.MouseEvent<HTMLButtonElement>,
-        id: string
+        id: string,
+        amountAdded: number
     ) => void
 }
 

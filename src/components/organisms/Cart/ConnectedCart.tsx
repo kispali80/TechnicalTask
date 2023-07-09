@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '~app/hooks'
-import { emptyCart, removeItemFromCart } from '~app/store/features/handleCart'
 import {
-    increaseProductAmount,
+    emptyCart,
+    removeItemFromCart,
+    updateCartItem,
+} from '~app/store/features/handleCart'
+import {
     setForceRefresh,
+    updateProductAmount,
 } from '~app/store/features/handleProducts'
 import {
     addErrorMessage,
@@ -12,6 +16,7 @@ import {
 import { Cart } from './Cart'
 import { formatCartItems } from '~utils/formatter'
 import { CartProductsType } from '~types/cart'
+import { canUpdateItem } from '~utils/cart'
 
 /**
  * Cart component for handling stored items and related products logic
@@ -30,16 +35,17 @@ export const ConnectedCart = () => {
     ) => {
         event.preventDefault()
         try {
+            const cartItem = storedCartItems?.find((item) => item?.id === id)
             const product = storedProducts?.find(
                 (product) => product?.id === id
             )
-            const cartItem = storedCartItems?.find((item) => item?.id === id)
-            dispatch(removeItemFromCart({ id }))
+
             if (product && cartItem) {
+                dispatch(removeItemFromCart({ id }))
                 dispatch(
-                    increaseProductAmount({
+                    updateProductAmount({
                         id,
-                        amount: product?.minOrderAmount * cartItem?.amount,
+                        amount: product.availableAmount + cartItem?.amount,
                     })
                 )
             }
@@ -54,7 +60,55 @@ export const ConnectedCart = () => {
                 addErrorMessage({
                     message:
                         'There has been an error while trying to remove the product from your cart',
-                    code: 'ERR005',
+                    code: 'CART-ERR-001',
+                })
+            )
+        }
+    }
+
+    const onUpdateItem = (
+        event: React.MouseEvent<HTMLButtonElement>,
+        id: string,
+        amountUpdated: number
+    ) => {
+        event.preventDefault()
+        try {
+            if (canUpdateItem(storedProducts, cartItems, id, amountUpdated)) {
+                const product = storedProducts?.find(
+                    (product) => product?.id === id
+                )
+                const cartItem = storedCartItems?.find(
+                    (item) => item?.id === id
+                )
+                if (product && cartItem) {
+                    const maxAmount = product.availableAmount + cartItem.amount
+                    dispatch(updateCartItem({ id, amount: amountUpdated }))
+                    dispatch(
+                        updateProductAmount({
+                            id,
+                            amount: maxAmount - amountUpdated,
+                        })
+                    )
+                    dispatch(
+                        addSuccessMessage({
+                            message: 'Your cart has been updated successfully',
+                        })
+                    )
+                }
+            } else {
+                dispatch(
+                    addErrorMessage({
+                        message: 'The cart cannot be updated currently',
+                        code: 'CART-ERR-002',
+                    })
+                )
+            }
+        } catch (e) {
+            dispatch(
+                addErrorMessage({
+                    message:
+                        'There has been an error while trying to update your cart',
+                    code: 'CART-ERR-003',
                 })
             )
         }
@@ -75,7 +129,7 @@ export const ConnectedCart = () => {
                 addErrorMessage({
                     message:
                         'There has been an error while trying to remove the items from your cart',
-                    code: 'ERR004',
+                    code: 'CART-ERR-004',
                 })
             )
         }
@@ -98,6 +152,7 @@ export const ConnectedCart = () => {
             items={cartItems}
             isLoading={isLoading}
             onRemoveItem={onRemoveItem}
+            onUpdateItem={onUpdateItem}
             onRemoveAll={onRemoveAll}
         />
     )

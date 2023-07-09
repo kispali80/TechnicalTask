@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { CartItemProps } from '~types/cart'
 import { Price } from '~atoms/Price/Price'
+import { CartButtons } from '~molecules/CartButtons/CartButtons'
 
 export const CartItem: FC<CartItemProps> = ({
     id,
@@ -9,13 +10,14 @@ export const CartItem: FC<CartItemProps> = ({
     price,
     amount,
     onRemoveItem,
+    onUpdateItem,
 }) => {
     return (
-        <div className="flex flex-col sm:flex-row sm:h-48 sm:border-b-slate-300 sm:border-b-2 shadow-md sm:shadow-none">
+        <div className="flex flex-col sm:flex-row sm:h-80 sm:border-b-slate-300 sm:border-b-2 shadow-md sm:shadow-none">
             <div className="w-auto m-auto mb-4 text-center sm:w-1/2 sm:h-5/6">
                 {img && (
                     <img
-                        className="h-40 sm:h-full"
+                        className="h-40 md:h-full"
                         src={img}
                         alt={name}
                         title={name}
@@ -35,13 +37,13 @@ export const CartItem: FC<CartItemProps> = ({
                         Qty: {amount}
                     </p>
                 </div>
-                <div className="flex md:w-1/2 md:items-center sm:max-w-xs space-x-4 mt-4 mb-4 text-sm font-medium">
-                    <button
-                        className="flex-none w-full h-12 uppercase font-medium tracking-wider bg-slate-900 text-white hover:bg-slate-700"
-                        onClick={(event) => onRemoveItem(event, id)}
-                    >
-                        Remove
-                    </button>
+                <div className="flex flex-col md:w-1/2 md:items-center sm:max-w-xs mt-4 mb-4 text-sm font-medium">
+                    <CartButtons
+                        id={id}
+                        amount={amount}
+                        onRemoveItem={onRemoveItem}
+                        onUpdateItem={onUpdateItem}
+                    />
                 </div>
             </form>
         </div>

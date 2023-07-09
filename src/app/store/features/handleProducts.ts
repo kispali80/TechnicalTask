@@ -20,37 +20,14 @@ export const handleProducts = createSlice({
         setForceRefresh: (state, action) => {
             state.forceRefresh = action?.payload?.refresh || false
         },
-        decreaseProductAmount: (state, action) => {
+        updateProductAmount: (state, action) => {
             const currentProduct = state?.items?.find(
                 (product) => product?.id == action?.payload?.id
             )
             if (currentProduct) {
                 const updatedProduct = {
                     ...currentProduct,
-                    availableAmount:
-                        currentProduct?.availableAmount -
-                        action?.payload?.amount,
-                }
-                const updatedProducts = state?.items?.map((product) => {
-                    if (product?.id === action?.payload?.id) {
-                        return updatedProduct
-                    }
-                    return product
-                })
-
-                state.items = updatedProducts
-            }
-        },
-        increaseProductAmount: (state, action) => {
-            const currentProduct = state?.items?.find(
-                (product) => product?.id == action?.payload?.id
-            )
-            if (currentProduct) {
-                const updatedProduct = {
-                    ...currentProduct,
-                    availableAmount:
-                        currentProduct?.availableAmount +
-                        action?.payload?.amount,
+                    availableAmount: action?.payload?.amount,
                 }
                 const updatedProducts = state?.items?.map((product) => {
                     if (product?.id === action?.payload?.id) {
@@ -65,11 +42,7 @@ export const handleProducts = createSlice({
     },
 })
 
-export const {
-    addProducts,
-    setForceRefresh,
-    decreaseProductAmount,
-    increaseProductAmount,
-} = handleProducts.actions
+export const { addProducts, setForceRefresh, updateProductAmount } =
+    handleProducts.actions
 
 export default handleProducts.reducer

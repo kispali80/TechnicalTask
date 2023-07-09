@@ -13,6 +13,7 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({
     id,
     availableAmount,
     onAddProduct,
+    amountAdded,
 }) => {
     return (
         <button
@@ -23,7 +24,7 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({
                     'bg-slate-300 hover:bg-slate-300': availableAmount == 0,
                 }
             )}
-            onClick={(event) => onAddProduct(event, id)}
+            onClick={(event) => onAddProduct(event, id, amountAdded)}
         >
             Add to Cart
         </button>

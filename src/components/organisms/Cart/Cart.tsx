@@ -9,6 +9,7 @@ export const Cart: FC<CartProps> = ({
     items,
     isLoading,
     onRemoveItem,
+    onUpdateItem,
     onRemoveAll,
 }) => {
     return (
@@ -24,6 +25,7 @@ export const Cart: FC<CartProps> = ({
                                 <CartItem
                                     {...item}
                                     onRemoveItem={onRemoveItem}
+                                    onUpdateItem={onUpdateItem}
                                 />
                             </li>
                         ))}

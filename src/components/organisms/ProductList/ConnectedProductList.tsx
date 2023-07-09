@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '~app/hooks'
 import {
     addProducts,
-    decreaseProductAmount,
     setForceRefresh,
+    updateProductAmount,
 } from '~app/store/features/handleProducts'
 import { addItemToCart, emptyCart } from '~app/store/features/handleCart'
 import { fetchProducts } from '~utils/apiClient'
@@ -17,7 +17,6 @@ import { canAddItem } from '~utils/cart'
 export const ConnectedProductList = () => {
     const dispatch = useAppDispatch()
     const storedProducts = useAppSelector((state) => state?.products?.items)
-    const storedCartItems = useAppSelector((state) => state?.cart?.items)
     const forceRefresh = useAppSelector(
         (state) => state?.products?.forceRefresh
     )
@@ -30,12 +29,12 @@ export const ConnectedProductList = () => {
                 setIsLoading(false)
                 dispatch(addProducts(result?.data))
             })
-            .catch((e) => {
+            .catch(() => {
                 dispatch(
                     addErrorMessage({
                         message:
                             'There was an error while trying to get the product list',
-                        code: 'ERR001',
+                        code: 'CART-ERR-001',
                     })
                 )
             })
@@ -48,34 +47,37 @@ export const ConnectedProductList = () => {
 
     const onAddProduct = (
         event: React.MouseEvent<HTMLButtonElement>,
-        id: string
+        id: string,
+        amountAdded: number
     ) => {
         event.preventDefault()
         try {
             // Check if the add to cart is possible
-            if (canAddItem(storedProducts, storedCartItems, id)) {
+            if (canAddItem(storedProducts, id, amountAdded)) {
                 const product = storedProducts?.find(
                     (product) => product?.id === id
                 )
-                dispatch(addItemToCart({ id, amount: product?.minOrderAmount }))
-                dispatch(
-                    decreaseProductAmount({
-                        id,
-                        amount: product?.minOrderAmount,
-                    })
-                )
-                dispatch(
-                    addSuccessMessage({
-                        message:
-                            'Product has been successfully added to your cart',
-                    })
-                )
+                if (product) {
+                    dispatch(addItemToCart({ id, amount: amountAdded }))
+                    dispatch(
+                        updateProductAmount({
+                            id,
+                            amount: product?.availableAmount - amountAdded,
+                        })
+                    )
+                    dispatch(
+                        addSuccessMessage({
+                            message:
+                                'Product has been successfully added to your cart',
+                        })
+                    )
+                }
             } else {
                 dispatch(
                     addErrorMessage({
                         message:
-                            'Sorry, you cannot add more from this product to the cart',
-                        code: 'ERR003',
+                            'Sorry, you cannot add this product to the cart',
+                        code: 'CART-ERR-002',
                     })
                 )
             }
@@ -84,7 +86,7 @@ export const ConnectedProductList = () => {
                 addErrorMessage({
                     message:
                         'There has been an error while trying to add the product to your cart',
-                    code: 'ERR002',
+                    code: 'CART-ERR-003',
                 })
             )
         }

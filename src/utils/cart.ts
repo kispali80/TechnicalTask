@@ -3,23 +3,49 @@ import { CartItemType, CartProductsType } from '~types/cart'
 
 export const canAddItem = (
     products: ProductType[],
-    cartItems: CartItemType[],
-    productId: string
+    productId: string,
+    amountAdded: number
 ): boolean => {
-    // First check if the item is already in the cart
-    const cartItem = cartItems?.find((item) => item?.id === productId)
-    if (!cartItem) {
-        return true
+    // No amount specified
+    if (!amountAdded) {
+        return false
     }
 
-    if (cartItem) {
-        const product = products?.find((product) => product?.id === productId)
-        if (product) {
-            const { availableAmount, minOrderAmount } = product
-            // The availableAmount must be greater than minOrderAmount
-            if (availableAmount >= minOrderAmount) {
-                return true
-            }
+    const product = products?.find((product) => product?.id === productId)
+    if (product) {
+        const { availableAmount, minOrderAmount } = product
+        if (
+            availableAmount >= minOrderAmount &&
+            amountAdded >= minOrderAmount &&
+            amountAdded <= availableAmount
+        ) {
+            return true
+        }
+    }
+
+    return false
+}
+
+export const canUpdateItem = (
+    products: ProductType[],
+    cartItems: CartItemType[],
+    productId: string,
+    amountUpdated: number
+) => {
+    // No amount specified
+    if (!amountUpdated) {
+        return false
+    }
+
+    const product = products?.find((product) => product?.id === productId)
+    const cartItem = cartItems?.find((item) => item?.id === productId)
+    if (product && cartItem) {
+        const { availableAmount, minOrderAmount } = product
+        if (
+            availableAmount + cartItem?.amount >= amountUpdated &&
+            amountUpdated >= minOrderAmount
+        ) {
+            return true
         }
     }
 

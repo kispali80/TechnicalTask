@@ -7,6 +7,11 @@ export type CartProps = {
         event: React.MouseEvent<HTMLButtonElement>,
         id: string
     ) => void
+    onUpdateItem: (
+        event: React.MouseEvent<HTMLButtonElement>,
+        id: string,
+        amountUpdated: number
+    ) => void
     onRemoveAll: () => void
 }
 
@@ -14,6 +19,11 @@ export type CartItemProps = CartProductsType & {
     onRemoveItem: (
         event: React.MouseEvent<HTMLButtonElement>,
         id: string
+    ) => void
+    onUpdateItem: (
+        event: React.MouseEvent<HTMLButtonElement>,
+        id: string,
+        amountUpdated: number
     ) => void
 }
 

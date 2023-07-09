@@ -25,7 +25,7 @@ export const StockStatus: FC<ProductStockStatus> = ({
                     {availableAmount > 1 && <p>Qty: {availableAmount}</p>}
                     {availableAmount === 1 && <p>Only 1 left</p>}
                     <p>
-                        {minOrderAmount} piece(s) will be added per transaction
+                        {minOrderAmount} piece(s) is the minimum per transaction
                     </p>
                 </>
             )}

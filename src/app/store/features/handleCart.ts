@@ -22,6 +22,7 @@ export const handleCart = createSlice({
                 const currentItem = state?.items?.find(
                     (item) => item?.id == action?.payload?.id
                 )
+
                 if (currentItem) {
                     const updatedItem = {
                         ...currentItem,
@@ -43,6 +44,26 @@ export const handleCart = createSlice({
                 }
             }
         },
+        updateCartItem: (state, action) => {
+            const currentItem = state?.items?.find(
+                (item) => item?.id == action?.payload?.id
+            )
+
+            if (currentItem) {
+                const updatedItem = {
+                    ...currentItem,
+                    amount: action?.payload?.amount,
+                }
+                const updatedItems = state?.items?.map((item) => {
+                    if (item?.id === action?.payload?.id) {
+                        return updatedItem
+                    }
+                    return item
+                })
+
+                state.items = updatedItems
+            }
+        },
         removeItemFromCart: (state, action) => {
             state.items = state.items.filter(
                 (product) => action.payload.id !== product.id
@@ -54,7 +75,7 @@ export const handleCart = createSlice({
     },
 })
 
-export const { addItemToCart, removeItemFromCart, emptyCart } =
+export const { addItemToCart, updateCartItem, removeItemFromCart, emptyCart } =
     handleCart.actions
 
 export default handleCart.reducer
