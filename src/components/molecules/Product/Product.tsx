@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, useState } from 'react'
 import { ProductProps } from '~types/product'
-import { StockStatus } from '~molecules/StockStatus/StockStatus'
+import { StockStatus } from '~atoms/StockStatus/StockStatus'
 import { Price } from '~atoms/Price/Price'
 import { AddToCartButton } from '~atoms/AddToCartButton/AddToCartButton'
 

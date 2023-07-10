@@ -8,7 +8,7 @@ import { NoResultProps } from '~types/components'
  */
 export const NoResult: FC<NoResultProps> = ({ message }) => {
     return (
-        <div className="flex flex-col items-center">
+        <div data-testid="noResults" className="flex flex-col items-center">
             <img
                 className="w-8 mt-32 mb-8"
                 src="/sad-face.png"

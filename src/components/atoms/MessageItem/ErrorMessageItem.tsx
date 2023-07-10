@@ -5,7 +5,6 @@ import { ErrorMessageItemProps } from '~types/message'
  * Message Item component for showing errors
  * @param message
  * @param code
- * @constructor
  */
 export const ErrorMessageItem: FC<ErrorMessageItemProps> = ({
     message,
@@ -15,6 +14,7 @@ export const ErrorMessageItem: FC<ErrorMessageItemProps> = ({
         <>
             <div
                 className="bg-red-100 border-t-4 border-red-600 rounded-b text-red-900 px-4 py-3 shadow-md"
+                data-testid="errorMessageItem"
                 role="alert"
             >
                 <div className="flex flex-col">

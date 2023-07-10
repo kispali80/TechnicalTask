@@ -4,7 +4,6 @@ import { LoaderProps } from '~types/loader'
 /**
  * Loader component which shows a loader animation
  * @param isLoading
- * @constructor
  */
 export const Loader: FC<LoaderProps> = ({ isLoading }) => {
     if (!isLoading) {
@@ -13,7 +12,7 @@ export const Loader: FC<LoaderProps> = ({ isLoading }) => {
 
     if (isLoading) {
         return (
-            <div className="w-20 m-auto">
+            <div data-testid="loading" className="w-20 m-auto">
                 <img
                     className="h-20"
                     src="/loading.gif"

@@ -9,7 +9,8 @@ module.exports = {
             "~app": path.resolve(__dirname, 'src/app'),
             "~utils": path.resolve(__dirname, 'src/utils'),
             "~constants": path.resolve(__dirname, 'src/constants'),
-            "~layout": path.resolve(__dirname, 'src/layout')
+            "~layout": path.resolve(__dirname, 'src/layout'),
+            "~mocks": path.resolve(__dirname, 'src/mocks')
         },
     },
 };
