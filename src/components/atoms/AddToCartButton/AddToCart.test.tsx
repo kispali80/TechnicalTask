@@ -42,7 +42,7 @@ describe('renders the Add to Cart button component', () => {
     })
 
     it('renders with loading state', () => {
-        setup({ ...data, isLoading: true })
+        setup({ ...data, isLoading: '628639c1bcb9946a0c' })
         expect(
             screen.getByTestId('addToCartButton-628639c1bcb9946a0c')
         ).toHaveAttribute('disabled')

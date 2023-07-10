@@ -1,4 +1,4 @@
-import { configureStore, PreloadedState } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import storage from 'redux-persist/lib/storage'
 import { persistReducer, persistStore } from 'redux-persist'
 import handleProductsReducer from './store/features/handleProducts'
@@ -32,7 +32,7 @@ export const store = configureStore({
     },
 })
 
-export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+export const setupStore = () => {
     return store
 }
 
