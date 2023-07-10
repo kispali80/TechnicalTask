@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import { useAppSelector } from '~app/hooks'
 import { Minicart } from '~atoms/Minicart/Minicart'
 
+/**
+ * Navigation component for displaying navigation items: cart and products
+ */
 export default function Navigation() {
     const storedCartItems = useAppSelector((state) => state?.cart?.items)
 
@@ -17,6 +20,7 @@ export default function Navigation() {
                     >
                         <span className="mr-2 hidden sm:inline">Products</span>
                         <img
+                            data-testid="navigationItemProductsImage"
                             className="w-8"
                             src="/product-list.png"
                             alt="Product list"

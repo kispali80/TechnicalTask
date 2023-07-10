@@ -1,6 +1,13 @@
 import React, { ChangeEvent, FC, useState } from 'react'
 import { RemoveFromCartButtonProps } from '~types/components'
 
+/**
+ * Component fod displaying the Update and Remove buttons on Cart
+ * @param id
+ * @param amount
+ * @param onRemoveItem
+ * @param onUpdateItem
+ */
 export const CartButtons: FC<RemoveFromCartButtonProps> = ({
     id,
     amount,
@@ -24,6 +31,7 @@ export const CartButtons: FC<RemoveFromCartButtonProps> = ({
                 </label>
                 <div className="flex md:flex-col justify-between">
                     <input
+                        data-testid="updateCartAmount"
                         type="number"
                         min="0"
                         max={amount}
@@ -34,7 +42,9 @@ export const CartButtons: FC<RemoveFromCartButtonProps> = ({
                         onChange={onChangeAmount}
                     />
                     <button
+                        data-testid="updateCartButton"
                         className="w-1/2 md:w-full h-12 mb-4 uppercase font-medium tracking-wider bg-slate-900 text-white hover:bg-slate-700"
+                        role="button"
                         onClick={(event) =>
                             onUpdateItem(event, id, amountUpdated)
                         }
@@ -44,7 +54,9 @@ export const CartButtons: FC<RemoveFromCartButtonProps> = ({
                 </div>
             </div>
             <button
+                data-testid="removeCartButton"
                 className="w-full h-12 uppercase font-medium tracking-wider bg-slate-900 text-white hover:bg-slate-700"
+                role="button"
                 onClick={(event) => onRemoveItem(event, id)}
             >
                 Remove

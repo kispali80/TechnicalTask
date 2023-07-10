@@ -2,8 +2,9 @@ import { ProductType } from '~types/product'
 import { CartItemType, CartProductsType } from '~types/cart'
 
 export const formatPrice = (price: number, amount: number) => {
-    const value = (price * amount).toFixed(2)
-    return `${value}€`
+    const value = price * amount
+    const formattedValue = value % 1 == 0 ? value : value.toFixed(2)
+    return `${formattedValue}€`
 }
 
 export const formatCartItems = (

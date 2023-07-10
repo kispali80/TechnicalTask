@@ -5,6 +5,9 @@ import { ErrorMessageItem } from './ErrorMessageItem'
 import { ErrorMessageItemProps } from '~types/message'
 
 describe('renders the Error Message Item component', () => {
+    const data = {
+        message: 'Test error message',
+    }
     const setup = (props?: ErrorMessageItemProps) => {
         return render(
             <ErrorMessageItem message="Test error message" {...props} />
@@ -19,7 +22,7 @@ describe('renders the Error Message Item component', () => {
     })
 
     it('renders the error message without the code', () => {
-        setup({ code: 'Test code' })
+        setup({ ...data, code: 'Test code' })
         expect(screen.getByTestId('errorMessageItem')).toBeInTheDocument()
         expect(screen.getByText('Test error message')).toBeInTheDocument()
         expect(screen.getByText('Test code')).toBeInTheDocument()

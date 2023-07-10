@@ -14,7 +14,6 @@ import {
  * @param message
  * @param autoRemove
  * @param code
- * @constructor
  */
 export const Messages: FC<MessageProps> = ({
     type,

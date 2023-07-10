@@ -3,32 +3,28 @@
     "id": "628639c1bcb9946a0c",
     "name": "Test Product 1",
     "img": "https://media.gettyimages.com/photos/bolts-and-nuts-picture-id175425827?s=2048x2048",
-    "availableAmount": 1000,
-    "minOrderAmount": 20,
-    "price": 0.2
+    "amount": 22,
+    "price": 4.8
   },
   {
     "id": "1",
     "name": "Test Product 2",
     "img": "https://media.gettyimages.com/photos/bolts-and-nuts-picture-id175425827?s=2048x2048",
-    "availableAmount": 10,
-    "minOrderAmount": 1,
-    "price": 20
+    "amount": 10,
+    "price": 200
   },
   {
     "id": "TestProduct",
     "name": "Test Product 3",
     "img": "https://media.gettyimages.com/photos/bolts-and-nuts-picture-id175425827?s=2048x2048",
-    "availableAmount": 10,
-    "minOrderAmount": 1,
-    "price": 20
+    "amount": 10,
+    "price": 200
   },
   {
     "id": "TestProduct628639c1bcb9946a0c",
     "name": "Test Product 4",
     "img": "https://media.gettyimages.com/photos/bolts-and-nuts-picture-id175425827?s=2048x2048",
-    "availableAmount": 100,
-    "minOrderAmount": 50,
-    "price": 0.3
+    "amount": 50,
+    "price": 150
   }
 ]

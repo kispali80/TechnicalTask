@@ -4,6 +4,16 @@ import { StockStatus } from '~atoms/StockStatus/StockStatus'
 import { Price } from '~atoms/Price/Price'
 import { AddToCartButton } from '~atoms/AddToCartButton/AddToCartButton'
 
+/**
+ * Product component for displaying product attributes
+ * @param id
+ * @param name
+ * @param img
+ * @param price
+ * @param availableAmount
+ * @param minOrderAmount
+ * @param onAddProduct
+ */
 export const Product: FC<ProductProps> = ({
     id,
     name,
@@ -23,7 +33,13 @@ export const Product: FC<ProductProps> = ({
         <div className="flex flex-col my-4 mx-2 shadow-md">
             <div className="w-auto m-auto mb-4 text-center">
                 {img && (
-                    <img className="h-40" src={img} alt={name} title={name} />
+                    <img
+                        data-testid="productImage"
+                        className="h-40"
+                        src={img}
+                        alt={name}
+                        title={name}
+                    />
                 )}
             </div>
             <form className="flex-auto p:2 md:p-4" method="POST">
@@ -45,6 +61,7 @@ export const Product: FC<ProductProps> = ({
                         Desired amount
                     </label>
                     <input
+                        data-testid="productAmount"
                         type="number"
                         min={minOrderAmount}
                         max={availableAmount}

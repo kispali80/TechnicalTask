@@ -3,6 +3,10 @@ import { CartTotalsProps } from '~types/cart'
 import { getTotals } from '~utils/cart'
 import { formatPrice } from '~utils/formatter'
 
+/**
+ * Cart Totals for displaying cart totals
+ * @param items
+ */
 export const CartTotals: FC<CartTotalsProps> = ({ items }) => {
     const totals = getTotals(items)
 

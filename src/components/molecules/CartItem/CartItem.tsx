@@ -3,6 +3,16 @@ import { CartItemProps } from '~types/cart'
 import { Price } from '~atoms/Price/Price'
 import { CartButtons } from '~molecules/CartButtons/CartButtons'
 
+/**
+ * Cart Item component for rendering name, image, and action buttons to be able to update or remove any item
+ * @param id
+ * @param name
+ * @param img
+ * @param price
+ * @param amount
+ * @param onRemoveItem
+ * @param onUpdateItem
+ */
 export const CartItem: FC<CartItemProps> = ({
     id,
     name,
@@ -13,10 +23,14 @@ export const CartItem: FC<CartItemProps> = ({
     onUpdateItem,
 }) => {
     return (
-        <div className="flex flex-col sm:flex-row sm:h-80 sm:border-b-slate-300 sm:border-b-2 shadow-md sm:shadow-none">
+        <div
+            data-testid="cartItem"
+            className="flex flex-col sm:flex-row sm:h-80 sm:border-b-slate-300 sm:border-b-2 shadow-md sm:shadow-none"
+        >
             <div className="w-auto m-auto mb-4 text-center sm:w-1/2 sm:h-5/6">
                 {img && (
                     <img
+                        data-testid="cartItemImage"
                         className="h-40 md:h-full"
                         src={img}
                         alt={name}

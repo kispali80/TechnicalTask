@@ -1,4 +1,7 @@
 const path = require('path');
+const { pathsToModuleNameMapper } = require('ts-jest');
+const { compilerOptions } = require('./tsconfig.paths.json');
+
 module.exports = {
     webpack: {
         alias: {
@@ -11,6 +14,14 @@ module.exports = {
             "~constants": path.resolve(__dirname, 'src/constants'),
             "~layout": path.resolve(__dirname, 'src/layout'),
             "~mocks": path.resolve(__dirname, 'src/mocks')
+        },
+    },
+    jest: {
+        configure: {
+            preset: 'ts-jest',
+            moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+                prefix: '<rootDir>',
+            }),
         },
     },
 };

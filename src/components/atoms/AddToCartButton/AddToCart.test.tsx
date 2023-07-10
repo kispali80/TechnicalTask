@@ -7,20 +7,24 @@ import products from '../../..//mocks/products.json'
 
 describe('renders the Add to Cart button component', () => {
     const onAddProduct = jest.fn()
+    const product = products.shift()
+    const data = {
+        id: product?.id || '',
+        amountAdded: 1,
+        onAddProduct: onAddProduct,
+        availableAmount: product?.availableAmount,
+    }
 
     const setup = (props?: AddToCartButtonProps) => {
-        const product = products.shift()
-        if (product) {
-            return render(
-                <AddToCartButton
-                    id={product.id}
-                    amountAdded={1}
-                    onAddProduct={onAddProduct}
-                    availableAmount={product.availableAmount}
-                    {...props}
-                />
-            )
-        }
+        return render(
+            <AddToCartButton
+                id={product?.id || ''}
+                amountAdded={1}
+                onAddProduct={onAddProduct}
+                availableAmount={product?.availableAmount || 0}
+                {...props}
+            />
+        )
     }
 
     it('renders with the expected text', () => {
@@ -29,7 +33,7 @@ describe('renders the Add to Cart button component', () => {
     })
 
     it('renders with disabled state', () => {
-        setup({ availableAmount: 0 })
+        setup({ ...data, availableAmount: 0 })
         expect(screen.getByTestId('addToCartButton')).toHaveAttribute(
             'disabled'
         )

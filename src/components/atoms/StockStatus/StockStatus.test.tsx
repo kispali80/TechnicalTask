@@ -5,6 +5,9 @@ import { StockStatus } from './StockStatus'
 import { ProductStockStatus } from '~types/product'
 
 describe('renders the StockStatus component', () => {
+    const data = {
+        minOrderAmount: 10,
+    }
     const setup = (props?: ProductStockStatus) => {
         return render(
             <StockStatus availableAmount={100} minOrderAmount={10} {...props} />
@@ -22,7 +25,7 @@ describe('renders the StockStatus component', () => {
     })
 
     it('renders when the product is in stock and there is 1 left', () => {
-        setup({ availableAmount: 1 })
+        setup({ ...data, availableAmount: 1 })
         expect(screen.getByTestId('stockStatus')).toBeInTheDocument()
         expect(screen.getByText('In Stock')).toBeInTheDocument()
         expect(screen.getByText('Only 1 left')).toBeInTheDocument()
@@ -32,7 +35,7 @@ describe('renders the StockStatus component', () => {
     })
 
     it('renders when the no product left in stock', () => {
-        setup({ availableAmount: 0 })
+        setup({ ...data, availableAmount: 0 })
         expect(screen.getByTestId('stockStatus')).toBeInTheDocument()
         expect(screen.getByText('Out of Stock')).toBeInTheDocument()
         expect(screen.queryByText('In Stock')).not.toBeInTheDocument()

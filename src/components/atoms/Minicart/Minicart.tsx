@@ -17,6 +17,7 @@ export const Minicart: FC<MinicartProps> = ({ amount }) => {
         >
             <span className="mr-1 hidden sm:inline">Cart</span>
             <img
+                data-testid="navigationItemMinicartImage"
                 className="w-8"
                 src="/shopping-cart.png"
                 alt="Shopping Cart"
