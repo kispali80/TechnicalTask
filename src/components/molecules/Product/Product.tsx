@@ -34,7 +34,7 @@ export const Product: FC<ProductProps> = ({
             <div className="w-auto m-auto mb-4 text-center">
                 {img && (
                     <img
-                        data-testid="productImage"
+                        data-testid={`productImage-${id}`}
                         className="h-40"
                         src={img}
                         alt={name}
@@ -61,7 +61,7 @@ export const Product: FC<ProductProps> = ({
                         Desired amount
                     </label>
                     <input
-                        data-testid="productAmount"
+                        data-testid={`productAmount-${id}`}
                         type="number"
                         min={minOrderAmount}
                         max={availableAmount}

@@ -20,7 +20,7 @@ import { validateUpdateItem } from '~utils/cart'
 
 /**
  * Cart component for handling stored items and related products logic
- * @constructor
+ * Unit test is only added for the lower order component: Cart
  */
 export const ConnectedCart = () => {
     const dispatch = useAppDispatch()

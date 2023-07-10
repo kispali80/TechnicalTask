@@ -17,7 +17,7 @@ export const AddToCartButton: FC<AddToCartButtonProps> = ({
 }) => {
     return (
         <button
-            data-testid="addToCartButton"
+            data-testid={`addToCartButton-${id}`}
             disabled={availableAmount == 0}
             className={classNames(
                 'flex-none w-full h-12 uppercase font-medium tracking-wider bg-slate-900 text-white hover:bg-slate-700',

@@ -9,7 +9,7 @@ describe('renders the Cart Buttons component', () => {
     const onUpdateItem = jest.fn()
 
     const setup = () => {
-        const cartItem = cartItems.shift()
+        const cartItem = cartItems[0]
         if (cartItem) {
             return render(
                 <CartButtons
@@ -27,18 +27,24 @@ describe('renders the Cart Buttons component', () => {
         expect(screen.getByText('Update')).toBeInTheDocument()
         expect(screen.getByText('Remove')).toBeInTheDocument()
         expect(screen.getByText('Desired amount')).toBeInTheDocument()
-        expect(screen.getByTestId('updateCartAmount')).toBeInTheDocument()
+        expect(
+            screen.getByTestId('updateCartAmount-628639c1bcb9946a0c')
+        ).toBeInTheDocument()
     })
 
     it('triggers the click interaction for update button', () => {
         setup()
-        fireEvent.click(screen.getByTestId('updateCartButton'))
+        fireEvent.click(
+            screen.getByTestId('updateCartButton-628639c1bcb9946a0c')
+        )
         expect(onUpdateItem).toBeCalledTimes(1)
     })
 
     it('triggers the click interaction for remove button', () => {
         setup()
-        fireEvent.click(screen.getByTestId('removeCartButton'))
+        fireEvent.click(
+            screen.getByTestId('removeCartButton-628639c1bcb9946a0c')
+        )
         expect(onRemoveItem).toBeCalledTimes(1)
     })
 })

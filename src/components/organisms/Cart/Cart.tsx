@@ -5,6 +5,14 @@ import { CartTotals } from '~molecules/CartTotals/CartTotals'
 import { Loader } from '~atoms/Loader/Loader'
 import { NoResult } from '~atoms/NoResult/NoResult'
 
+/**
+ * Cart component for displaying cart items and cart totals
+ * @param items
+ * @param isLoading
+ * @param onRemoveItem
+ * @param onUpdateItem
+ * @param onRemoveAll
+ */
 export const Cart: FC<CartProps> = ({
     items,
     isLoading,
@@ -18,10 +26,13 @@ export const Cart: FC<CartProps> = ({
             <Loader isLoading={isLoading} />
             {!items?.length && <NoResult message="Your cart is empty" />}
             {!isLoading && items?.length > 0 && (
-                <>
+                <div data-testid="cart">
                     <ul className="flex flex-col md:flex-row md:flex-wrap md:justify-between">
                         {items.map((item) => (
-                            <li className="w-full mb-14">
+                            <li
+                                className="w-full mb-14"
+                                key={`cartIztem-${item?.id}`}
+                            >
                                 <CartItem
                                     {...item}
                                     onRemoveItem={onRemoveItem}
@@ -41,7 +52,7 @@ export const Cart: FC<CartProps> = ({
                             </button>
                         </div>
                     )}
-                </>
+                </div>
             )}
         </>
     )

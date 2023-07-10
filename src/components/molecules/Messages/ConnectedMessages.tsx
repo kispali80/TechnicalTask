@@ -5,7 +5,7 @@ import { MESSAGE_TYPE_ERROR, MESSAGE_TYPE_SUCCESS } from '~constants/messages'
 
 /**
  * Messages component for handling states and store related logic
- * There is no test attached to this component as this only passes down the stored values to the Messages component
+ * Unit test is only added for the lower order component: Messages
  */
 export const ConnectedMessages = () => {
     const storedSuccessMessage = useAppSelector(

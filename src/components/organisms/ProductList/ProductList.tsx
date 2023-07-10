@@ -5,6 +5,13 @@ import { Product } from '~molecules/Product/Product'
 import { NoResult } from '~atoms/NoResult/NoResult'
 import { Link } from 'react-router-dom'
 
+/**
+ * Product list component for displaying products
+ * @param products
+ * @param isLoading
+ * @param onAddProduct
+ * @param onForceRefresh
+ */
 export const ProductList: FC<ProductListProps> = ({
     products,
     isLoading,
@@ -36,7 +43,10 @@ export const ProductList: FC<ProductListProps> = ({
             {!isLoading && products?.length > 0 && (
                 <ul className="flex flex-col md:flex-row md:flex-wrap md:justify-between">
                     {products.map((product) => (
-                        <li className="md:w-1/2 lg:w-1/3 mb-14">
+                        <li
+                            className="md:w-1/2 lg:w-1/3 mb-14"
+                            key={`productItem-${product.id}`}
+                        >
                             <Product {...product} onAddProduct={onAddProduct} />
                         </li>
                     ))}

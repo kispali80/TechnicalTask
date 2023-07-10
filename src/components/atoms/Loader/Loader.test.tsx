@@ -11,5 +11,8 @@ describe('renders the Loader component', () => {
     it('renders when isLoading is true', () => {
         setup()
         expect(screen.getByTestId('loading')).toBeInTheDocument()
+        expect(
+            screen.getByTestId('loadingImage').getAttribute('src')
+        ).toContain('/loading.gif')
     })
 })

@@ -2,6 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Navigation from '~molecules/Navigation/Navigation'
 
+/**
+ * Header component
+ */
 export default function Header() {
     return (
         <header className="fixed xl:relative w-full bg-white p-2 shadow-md z-10">
@@ -9,6 +12,7 @@ export default function Header() {
                 <div className="logo">
                     <Link to="/">
                         <img
+                            data-testid="headerLogoImage"
                             className="w-8 xl:w-auto xl:h-16"
                             src="/logo192.png"
                             alt="Logo"

@@ -14,6 +14,7 @@ export const Loader: FC<LoaderProps> = ({ isLoading }) => {
         return (
             <div data-testid="loading" className="w-20 m-auto">
                 <img
+                    data-testid="loadingImage"
                     className="h-20"
                     src="/loading.gif"
                     alt="Loading"

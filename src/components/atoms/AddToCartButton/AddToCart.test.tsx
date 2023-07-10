@@ -7,7 +7,7 @@ import products from '../../..//mocks/products.json'
 
 describe('renders the Add to Cart button component', () => {
     const onAddProduct = jest.fn()
-    const product = products.shift()
+    const product = products[0]
     const data = {
         id: product?.id || '',
         amountAdded: 1,
@@ -34,14 +34,16 @@ describe('renders the Add to Cart button component', () => {
 
     it('renders with disabled state', () => {
         setup({ ...data, availableAmount: 0 })
-        expect(screen.getByTestId('addToCartButton')).toHaveAttribute(
-            'disabled'
-        )
+        expect(
+            screen.getByTestId('addToCartButton-628639c1bcb9946a0c')
+        ).toHaveAttribute('disabled')
     })
 
     it('triggers the click interaction', () => {
         setup()
-        fireEvent.click(screen.getByTestId('addToCartButton'))
+        fireEvent.click(
+            screen.getByTestId('addToCartButton-628639c1bcb9946a0c')
+        )
         expect(onAddProduct).toBeCalledTimes(1)
     })
 })

@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+/**
+ * Home page content component
+ */
 export default function HomeContent() {
     return (
         <>
@@ -19,6 +22,7 @@ export default function HomeContent() {
                             title="Product list"
                         >
                             <img
+                                data-testid="homePageProductsIcon"
                                 className="w-24"
                                 src="/product-list.png"
                                 alt="Product list"
@@ -36,6 +40,7 @@ export default function HomeContent() {
                             title="Product list"
                         >
                             <img
+                                data-testid="homePageCartIcon"
                                 className="w-24"
                                 src="/shopping-cart.png"
                                 alt="Shopping Cart"

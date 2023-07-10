@@ -31,7 +31,7 @@ export const CartButtons: FC<RemoveFromCartButtonProps> = ({
                 </label>
                 <div className="flex md:flex-col justify-between">
                     <input
-                        data-testid="updateCartAmount"
+                        data-testid={`updateCartAmount-${id}`}
                         type="number"
                         min="0"
                         max={amount}
@@ -42,7 +42,7 @@ export const CartButtons: FC<RemoveFromCartButtonProps> = ({
                         onChange={onChangeAmount}
                     />
                     <button
-                        data-testid="updateCartButton"
+                        data-testid={`updateCartButton-${id}`}
                         className="w-1/2 md:w-full h-12 mb-4 uppercase font-medium tracking-wider bg-slate-900 text-white hover:bg-slate-700"
                         role="button"
                         onClick={(event) =>
@@ -54,7 +54,7 @@ export const CartButtons: FC<RemoveFromCartButtonProps> = ({
                 </div>
             </div>
             <button
-                data-testid="removeCartButton"
+                data-testid={`removeCartButton-${id}`}
                 className="w-full h-12 uppercase font-medium tracking-wider bg-slate-900 text-white hover:bg-slate-700"
                 role="button"
                 onClick={(event) => onRemoveItem(event, id)}

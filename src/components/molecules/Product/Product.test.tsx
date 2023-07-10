@@ -36,7 +36,7 @@ describe('renders the Product component', () => {
     it('renders the content when product is available', () => {
         setup()
         expect(
-            screen.getByTestId('productImage').getAttribute('src')
+            screen.getByTestId('productImage-628639c1bcb9946a0c').getAttribute('src')
         ).toContain(
             'https://media.gettyimages.com/photos/bolts-and-nuts-picture-id175425827?s=2048x2048'
         )
@@ -48,14 +48,18 @@ describe('renders the Product component', () => {
             screen.getByText('20 piece(s) is the minimum per transaction')
         ).toBeInTheDocument()
         expect(screen.getByText('Desired amount')).toBeInTheDocument()
-        expect(screen.getByTestId('productAmount')).toBeInTheDocument()
+        expect(
+            screen.getByTestId('productAmount-628639c1bcb9946a0c')
+        ).toBeInTheDocument()
         expect(screen.getByText('Add to Cart')).toBeInTheDocument()
     })
 
     it('renders the content when product is NOT available', () => {
         setup({ ...data, availableAmount: 0 })
         expect(
-            screen.getByTestId('productImage').getAttribute('src')
+            screen
+                .getByTestId('productImage-628639c1bcb9946a0c')
+                .getAttribute('src')
         ).toContain(
             'https://media.gettyimages.com/photos/bolts-and-nuts-picture-id175425827?s=2048x2048'
         )
@@ -63,14 +67,18 @@ describe('renders the Product component', () => {
         expect(screen.getByText('Price: 0.20€')).toBeInTheDocument()
         expect(screen.getByText('Out of Stock')).toBeInTheDocument()
         expect(screen.getByText('Desired amount')).toBeInTheDocument()
-        expect(screen.getByTestId('productAmount')).toBeInTheDocument()
-        expect(screen.getByTestId('productAmount')).toHaveAttribute('disabled')
+        expect(
+            screen.getByTestId('productAmount-628639c1bcb9946a0c')
+        ).toBeInTheDocument()
+        expect(
+            screen.getByTestId('productAmount-628639c1bcb9946a0c')
+        ).toHaveAttribute('disabled')
         expect(
             screen.getByText('Sorry, no more product left')
         ).toBeInTheDocument()
         expect(screen.getByText('Add to Cart')).toBeInTheDocument()
-        expect(screen.getByTestId('addToCartButton')).toHaveAttribute(
-            'disabled'
-        )
+        expect(
+            screen.getByTestId('addToCartButton-628639c1bcb9946a0c')
+        ).toHaveAttribute('disabled')
     })
 })

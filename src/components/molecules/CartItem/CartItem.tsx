@@ -24,13 +24,13 @@ export const CartItem: FC<CartItemProps> = ({
 }) => {
     return (
         <div
-            data-testid="cartItem"
+            data-testid={`cartItem-${id}`}
             className="flex flex-col sm:flex-row sm:h-80 sm:border-b-slate-300 sm:border-b-2 shadow-md sm:shadow-none"
         >
             <div className="w-auto m-auto mb-4 text-center sm:w-1/2 sm:h-5/6">
                 {img && (
                     <img
-                        data-testid="cartItemImage"
+                        data-testid={`cartItemImage-${id}`}
                         className="h-40 md:h-full"
                         src={img}
                         alt={name}
