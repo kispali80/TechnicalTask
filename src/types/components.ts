@@ -9,6 +9,7 @@ export interface AddToCartButtonProps {
         id: string,
         amountAdded: number
     ) => void
+    isLoading: boolean | string
 }
 
 export interface RemoveFromCartButtonProps {

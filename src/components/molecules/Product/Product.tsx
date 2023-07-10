@@ -13,6 +13,7 @@ import { AddToCartButton } from '~atoms/AddToCartButton/AddToCartButton'
  * @param availableAmount
  * @param minOrderAmount
  * @param onAddProduct
+ * @param isLoading
  */
 export const Product: FC<ProductProps> = ({
     id,
@@ -22,6 +23,7 @@ export const Product: FC<ProductProps> = ({
     availableAmount,
     minOrderAmount,
     onAddProduct,
+    isLoading,
 }) => {
     const [amountAdded, setAmountAdded] = useState<number>(0)
 
@@ -79,6 +81,7 @@ export const Product: FC<ProductProps> = ({
                         availableAmount={availableAmount}
                         onAddProduct={onAddProduct}
                         amountAdded={amountAdded}
+                        isLoading={isLoading}
                     />
                 </div>
             </form>

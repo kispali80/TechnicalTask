@@ -12,6 +12,7 @@ describe('renders the Product List component', () => {
 
     const data = {
         isLoading: false,
+        isAddProductLoading: false,
         products,
         onAddProduct,
         onForceRefresh,
@@ -21,6 +22,7 @@ describe('renders the Product List component', () => {
         return renderWithProviders(
             <ProductList
                 isLoading={false}
+                isAddProductLoading={false}
                 products={products}
                 onAddProduct={onAddProduct}
                 onForceRefresh={onForceRefresh}

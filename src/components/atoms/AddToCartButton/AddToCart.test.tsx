@@ -13,6 +13,7 @@ describe('renders the Add to Cart button component', () => {
         amountAdded: 1,
         onAddProduct: onAddProduct,
         availableAmount: product?.availableAmount,
+        isLoading: false,
     }
 
     const setup = (props?: AddToCartButtonProps) => {
@@ -22,6 +23,7 @@ describe('renders the Add to Cart button component', () => {
                 amountAdded={1}
                 onAddProduct={onAddProduct}
                 availableAmount={product?.availableAmount || 0}
+                isLoading={false}
                 {...props}
             />
         )
@@ -37,6 +39,16 @@ describe('renders the Add to Cart button component', () => {
         expect(
             screen.getByTestId('addToCartButton-628639c1bcb9946a0c')
         ).toHaveAttribute('disabled')
+    })
+
+    it('renders with loading state', () => {
+        setup({ ...data, isLoading: true })
+        expect(
+            screen.getByTestId('addToCartButton-628639c1bcb9946a0c')
+        ).toHaveAttribute('disabled')
+        expect(
+            screen.getByTestId('addToCartButtonLoader-628639c1bcb9946a0c')
+        ).toBeInTheDocument()
     })
 
     it('triggers the click interaction', () => {

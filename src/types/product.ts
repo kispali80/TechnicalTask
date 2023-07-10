@@ -3,6 +3,7 @@ import React from 'react'
 export type ProductListProps = {
     products: ProductType[]
     isLoading: boolean
+    isAddProductLoading: boolean | string
     onAddProduct: (
         event: React.MouseEvent<HTMLButtonElement>,
         id: string,
@@ -12,6 +13,7 @@ export type ProductListProps = {
 }
 
 export type ProductProps = ProductType & {
+    isLoading: boolean | string
     onAddProduct: (
         event: React.MouseEvent<HTMLButtonElement>,
         id: string,

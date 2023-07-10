@@ -181,7 +181,7 @@ The header is sticky for mobile and tablet but it scrolls with the page for desk
 ### Desktop version
 ![Desktop Header](docs/assets/header-desktop.png)
 
-The minicart icon also displays the number of products (not the quantities for products) in the cart if there is more than one.
+The minicart icon also displays the number of products (not the quantities for products) in the cart if there is anything in the cart.
 
 ![Minicart](docs/assets/minicart.png)
 
@@ -221,7 +221,7 @@ The following product information are displayed: image, name, price, stock statu
 ![Available Product](docs/assets/product-enabled.png)
 
 When the product is NOT available because of out of stock the following is displayed instead.
-The user cannot add more amount of that product to the cart the button is disabled.
+The user cannot add more amount of that product to the cart and the button is disabled.
 
 ![Disabled Product](docs/assets/product-disabled.png)
 
@@ -274,4 +274,7 @@ This is how the empty cart looks.
 
 ![Cart Empty](docs/assets/cart-empty.png)
 
-
+# Good-to-have in the future
+- Setting expiration for the cart items
+- Adding tests for reducers
+- Adding Storybook

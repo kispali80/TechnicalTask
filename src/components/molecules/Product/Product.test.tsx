@@ -16,6 +16,7 @@ describe('renders the Product component', () => {
         price: product?.price || 0,
         minOrderAmount: product?.minOrderAmount || 0,
         onAddProduct,
+        isLoading: false
     }
 
     const setup = (args?: ProductProps) => {
@@ -28,6 +29,7 @@ describe('renders the Product component', () => {
                 availableAmount={product?.availableAmount || 0}
                 minOrderAmount={product?.minOrderAmount || 0}
                 onAddProduct={onAddProduct}
+                isLoading={false}
                 {...args}
             />
         )

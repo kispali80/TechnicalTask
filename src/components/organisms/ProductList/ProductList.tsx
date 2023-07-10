@@ -11,12 +11,14 @@ import { Link } from 'react-router-dom'
  * @param isLoading
  * @param onAddProduct
  * @param onForceRefresh
+ * @param isAddProductLoading
  */
 export const ProductList: FC<ProductListProps> = ({
     products,
     isLoading,
     onAddProduct,
     onForceRefresh,
+    isAddProductLoading,
 }) => {
     return (
         <>
@@ -47,7 +49,11 @@ export const ProductList: FC<ProductListProps> = ({
                             className="md:w-1/2 lg:w-1/3 mb-14"
                             key={`productItem-${product.id}`}
                         >
-                            <Product {...product} onAddProduct={onAddProduct} />
+                            <Product
+                                {...product}
+                                onAddProduct={onAddProduct}
+                                isLoading={isAddProductLoading}
+                            />
                         </li>
                     ))}
                 </ul>

@@ -21,6 +21,9 @@ export const ConnectedProductList = () => {
         (state) => state?.products?.forceRefresh
     )
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [isAddProductLoading, setIsAddProductLoading] = useState<
+        boolean | string
+    >(false)
 
     const getProducts = () => {
         setIsLoading(true)
@@ -58,6 +61,7 @@ export const ConnectedProductList = () => {
                 amountAdded
             )
             if (validateResult.isValid) {
+                setIsAddProductLoading(id)
                 const product = storedProducts?.find(
                     (product) => product?.id === id
                 )
@@ -87,6 +91,7 @@ export const ConnectedProductList = () => {
                     })
                 )
             }
+            setTimeout(() => setIsAddProductLoading(false), 500)
         } catch (e) {
             dispatch(
                 addErrorMessage({
@@ -97,9 +102,6 @@ export const ConnectedProductList = () => {
         }
     }
 
-    /**
-     * @TODO Fix duplicated api call
-     */
     useEffect(() => {
         const controller = new AbortController()
         if (!storedProducts?.length && !isLoading) {
@@ -120,6 +122,7 @@ export const ConnectedProductList = () => {
         <ProductList
             products={storedProducts}
             isLoading={isLoading}
+            isAddProductLoading={isAddProductLoading}
             onAddProduct={onAddProduct}
             onForceRefresh={onForceRefresh}
         />
