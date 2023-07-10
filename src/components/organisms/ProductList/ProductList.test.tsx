@@ -2,9 +2,9 @@ import React from 'react'
 import '@testing-library/jest-dom'
 import { screen } from '@testing-library/react'
 import { ProductList } from './ProductList'
-import products from '../../..//mocks/products.json'
 import { ProductListProps } from '~types/product'
 import { renderWithProviders } from '~utils/testing-helper'
+import products from '../../../__mocks__/products.json'
 
 describe('renders the Product List component', () => {
     const onAddProduct = jest.fn()

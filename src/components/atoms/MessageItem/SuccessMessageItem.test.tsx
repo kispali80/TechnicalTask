@@ -5,9 +5,7 @@ import { SuccessMessageItem } from './SuccessMessageItem'
 
 describe('renders the Success Message Item component', () => {
     const setup = () => {
-        return render(
-            <SuccessMessageItem message="Test success message" />
-        )
+        return render(<SuccessMessageItem message="Test success message" />)
     }
 
     it('renders the success message', () => {

@@ -2,7 +2,7 @@ import React from 'react'
 import '@testing-library/jest-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { CartButtons } from './CartButtons'
-import cartItems from '../../..//mocks/cart-items.json'
+import cartItems from '../../../__mocks__/cart-items.json'
 
 describe('renders the Cart Buttons component', () => {
     const onRemoveItem = jest.fn()

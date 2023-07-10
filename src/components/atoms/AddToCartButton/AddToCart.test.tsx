@@ -3,7 +3,7 @@ import '@testing-library/jest-dom'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { AddToCartButton } from './AddToCartButton'
 import { AddToCartButtonProps } from '~types/components'
-import products from '../../..//mocks/products.json'
+import products from '../../../__mocks__/products.json'
 
 describe('renders the Add to Cart button component', () => {
     const onAddProduct = jest.fn()

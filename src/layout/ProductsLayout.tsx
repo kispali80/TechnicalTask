@@ -4,6 +4,10 @@ import Footer from '~organisms/Footer/Footer'
 import { LayoutProps } from '~types/layout'
 import { ConnectedMessages } from '~molecules/Messages'
 
+/**
+ * Layout component for Product list
+ * @param children
+ */
 export const ProductsLayout: FC<LayoutProps> = ({ children }) => {
     return (
         <>

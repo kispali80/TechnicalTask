@@ -1,18 +1,18 @@
 import { ProductType } from '~types/product'
 import { CartItemType, CartProductsType } from '~types/cart'
 
+/**
+ * Validate cart item for add/update - general validation rules
+ * @param products
+ * @param productId
+ * @param amountAdded
+ */
 const validateItem = (
     products: ProductType[],
     productId: string,
     amountAdded: number
 ) => {
     let error = ''
-
-    // No amount specified
-    if (!amountAdded) {
-        error = 'You have to to specify more than 0 amount'
-    }
-
     const product = products?.find((product) => product?.id === productId)
     if (product) {
         const { availableAmount, minOrderAmount } = product
@@ -26,12 +26,23 @@ const validateItem = (
         }
     }
 
+    // No amount specified
+    if (!amountAdded) {
+        error = 'You have to to specify more than 0 amount'
+    }
+
     return {
         isValid: !error,
         error,
     }
 }
 
+/**
+ * Validate cart item if it can be added to the cart
+ * @param products
+ * @param productId
+ * @param amountAdded
+ */
 export const validateAddItem = (
     products: ProductType[],
     productId: string,
@@ -40,6 +51,13 @@ export const validateAddItem = (
     return validateItem(products, productId, amountAdded)
 }
 
+/**
+ * Validate cart item if it can be updated in the cart
+ * @param products
+ * @param cartItems
+ * @param productId
+ * @param amountUpdated
+ */
 export const validateUpdateItem = (
     products: ProductType[],
     cartItems: CartItemType[],
@@ -63,6 +81,10 @@ export const validateUpdateItem = (
     }
 }
 
+/**
+ * Get cart totals
+ * @param cartItems
+ */
 export const getTotals = (cartItems: CartProductsType[]) => {
     let price = 0
     let amount = 0

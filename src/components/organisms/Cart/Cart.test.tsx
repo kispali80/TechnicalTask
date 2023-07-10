@@ -2,7 +2,7 @@ import React from 'react'
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import { Cart } from './Cart'
-import cartItems from '../../..//mocks/cart-items.json'
+import cartItems from '../../../__mocks__/cart-items.json'
 import { CartProps } from '~types/cart'
 
 describe('renders the Cart component', () => {

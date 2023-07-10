@@ -2,7 +2,7 @@ import React from 'react'
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import { Product } from './Product'
-import products from '../../..//mocks/products.json'
+import products from '../../../__mocks__/products.json'
 import { ProductProps } from '~types/product'
 
 describe('renders the Product component', () => {
@@ -36,7 +36,9 @@ describe('renders the Product component', () => {
     it('renders the content when product is available', () => {
         setup()
         expect(
-            screen.getByTestId('productImage-628639c1bcb9946a0c').getAttribute('src')
+            screen
+                .getByTestId('productImage-628639c1bcb9946a0c')
+                .getAttribute('src')
         ).toContain(
             'https://media.gettyimages.com/photos/bolts-and-nuts-picture-id175425827?s=2048x2048'
         )
