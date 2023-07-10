@@ -84,7 +84,7 @@ Checking for javascript / typescript issues
 Checking for stylesheet related issues - No SASS file used currently on this project
 
 ### prettier
-Checking for indentation , spacing issues in the code to get the best out of it.
+Checking for indentation, spacing issues in the code to get the best out of it.
 
 FYI the ";" is removed and not set at the end of the lines as a requirement.
 This is a basic configuration. See "semi" rule in .prettierrc.json.
@@ -151,3 +151,127 @@ AC02.a: When product is added to cart its available amount should be decremented
 AC03: Cart page displays the products added to the cart: total amount currently added, total price.
 
 ## Home Page
+
+This is a summary page of showing the existing pages for the application.
+
+The user can either go to the product listing page or to the cart page.
+
+Link: http://localhost:3000/
+
+### Mobile version
+![Mobile Home Page](docs/assets/home-page-mobile.png)
+
+### Desktop version
+
+![Desktop Home Page](docs/assets/home-page-desktop.png)
+
+## Header
+
+It contains the logo and the name of the application.
+
+It also contains quick links for the products and cart pages.
+The mobile version only shows the icons.
+The tablet and desktop versions also show the names for the links.
+
+The header is sticky for mobile and tablet but it scrolls with the page for desktop.
+
+### Mobile version
+![Mobile Header](docs/assets/header-mobile.png)
+
+### Desktop version
+![Desktop Header](docs/assets/header-desktop.png)
+
+The minicart icon also displays the number of products (not the quantities for products) in the cart if there is more than one.
+
+![Minicart](docs/assets/minicart.png)
+
+## Product Listing Page
+
+The user can view the products. 
+The user can add the product to the cart with respect of the following rules:
+- The product cannot be added to the cart if the desired specified amount is greater than the available amount.
+- There is a minimum order amount when specifying the quantity otherwise the product won't be added
+
+When the product is added to the page the product displays the decremented value.
+
+Link: http://localhost:3000/products
+
+When adding a product successfully the following popup is displayed.
+![Modal Success](docs/assets/modal-success.png)
+
+This is an example for the error popup when the rules are not met.
+![Modal Error](docs/assets/modal-error.png)
+
+### Mobile version
+![Product mobile version](docs/assets/products-mobile.png)
+
+### Desktop version
+![Product desktop version](docs/assets/products-desktop.png)
+
+### Product Title
+
+It contains a Refresh icon. When clicking on it it hard reloads everything, resetting the states, emptying everything from the cart and refetching the products from the api endpoint resetting the attributes.
+
+![Product Title](docs/assets/product-title.png)
+
+### Product Item
+
+The following product information are displayed: image, name, price, stock status, input field for the amount and the add to cart button.
+
+![Available Product](docs/assets/product-enabled.png)
+
+When the product is NOT available because of out of stock the following is displayed instead.
+The user cannot add more amount of that product to the cart the button is disabled.
+
+![Disabled Product](docs/assets/product-disabled.png)
+
+## Cart Page
+
+The user can update or remove any (or all) product in the cart.
+The same rules are applied as well when updating any product:
+- The product cannot be added to the cart if the desired specified amount is greater than the available amount.
+- There is a minimum order amount when specifying the quantity otherwise the product won't be added
+
+When the product is removed from the cart the product gets back the quantity on the product listing page.
+
+Link: http://localhost:3000/cart
+
+When updating a product successfully the following popup is displayed.
+![Modal Success](docs/assets/modal-success.png)
+
+This is an example for the error popup when the rules are not met.
+![Modal Error](docs/assets/modal-error.png)
+
+### Mobile version
+![Cart Mobile](docs/assets/cart-mobile.png)
+
+### Desktop version
+![Cart Desktop](docs/assets/cart-desktop.png)
+
+## Totals
+
+It displays the total amount and the total price of the items.
+Clicking on the "Remove All" button removes all the product from the cart.
+
+![Cart Totals](docs/assets/cart-totals.png)
+
+## Cart Item
+
+It displays information about the product: image, name, total price, total amount, action buttons for updating or removing the item.
+
+![Cart Item](docs/assets/cart-item.png)
+
+## Action Buttons
+
+The user can update the cart as per the rules mentioned above.
+When removing the product along with the quantities it will be removed from the list.
+
+![Cart Action Buttons](docs/assets/cart-actions.png)
+
+## Empty Cart
+
+This is how the empty cart looks.
+
+![Cart Empty](docs/assets/cart-empty.png)
+
+
