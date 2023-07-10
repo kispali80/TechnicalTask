@@ -1,11 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{html,ts,tsx}"],
-  components: {
-    zIndex: {
-      header: 999
-    },
-  },
   theme: {
     screens: {
       'sm': '640px',

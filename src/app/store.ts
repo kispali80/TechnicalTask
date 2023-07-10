@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, PreloadedState } from '@reduxjs/toolkit'
 import storage from 'redux-persist/lib/storage'
 import { persistReducer, persistStore } from 'redux-persist'
 import handleProductsReducer from './store/features/handleProducts'
@@ -15,11 +15,11 @@ const persistCartConfig = {
     storage,
 }
 
-const persistedProductsReducer = persistReducer(
+export const persistedProductsReducer = persistReducer(
     persistProductsConfig,
     handleProductsReducer
 )
-const persistedCartReducer = persistReducer(
+export const persistedCartReducer = persistReducer(
     persistCartConfig,
     handleCartReducer
 )
@@ -32,8 +32,12 @@ export const store = configureStore({
     },
 })
 
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+    return store
+}
+
 export const persistor = persistStore(store)
 
 export type RootState = ReturnType<typeof store.getState>
-export type AppStore = typeof store
+export type AppStore = ReturnType<typeof setupStore>
 export type AppDispatch = typeof store.dispatch

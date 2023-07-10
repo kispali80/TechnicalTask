@@ -5,10 +5,9 @@ import { configureStore } from '@reduxjs/toolkit'
 import type { PreloadedState } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import type { AppStore, RootState } from '~app/store'
-import handleProductsReducer from '~app/store/features/handleProducts'
-import handleCartReducer from '~app/store/features/handleCart'
 import handleMessagesReducer from '~app/store/features/handleMessages'
 import { BrowserRouter } from 'react-router-dom'
+import { persistedCartReducer, persistedProductsReducer } from '~app/store'
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
     preloadedState?: PreloadedState<RootState>
@@ -18,11 +17,11 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
 export const renderWithProviders = (
     ui: React.ReactElement,
     {
-        preloadedState = {},
+        preloadedState,
         store = configureStore({
             reducer: {
-                products: handleProductsReducer,
-                cart: handleCartReducer,
+                products: persistedProductsReducer,
+                cart: persistedCartReducer,
                 messages: handleMessagesReducer,
             },
             preloadedState,
@@ -30,7 +29,7 @@ export const renderWithProviders = (
         ...renderOptions
     }: ExtendedRenderOptions = {}
 ) => {
-    function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
+    function Wrapper({ children }: PropsWithChildren): JSX.Element {
         return (
             <BrowserRouter>
                 <Provider store={store}>{children}</Provider>
