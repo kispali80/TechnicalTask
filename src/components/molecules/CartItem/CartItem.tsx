@@ -54,7 +54,6 @@ export const CartItem: FC<CartItemProps> = ({
                 <div className="flex flex-col md:w-1/2 md:items-center sm:max-w-xs mt-4 mb-4 text-sm font-medium">
                     <CartButtons
                         id={id}
-                        amount={amount}
                         onRemoveItem={onRemoveItem}
                         onUpdateItem={onUpdateItem}
                     />

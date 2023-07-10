@@ -276,5 +276,6 @@ This is how the empty cart looks.
 
 # Good-to-have in the future
 - Setting expiration for the cart items
+- Translations
 - Adding tests for reducers
 - Adding Storybook

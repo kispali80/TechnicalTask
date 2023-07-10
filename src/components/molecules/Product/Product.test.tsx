@@ -47,7 +47,7 @@ describe('renders the Product component', () => {
         expect(screen.getByText('Test Product 1')).toBeInTheDocument()
         expect(screen.getByText('Price: 0.20€')).toBeInTheDocument()
         expect(screen.getByText('In Stock')).toBeInTheDocument()
-        expect(screen.getByText('Available Qty: 1000')).toBeInTheDocument()
+        expect(screen.getByText('Available Qty: 978')).toBeInTheDocument()
         expect(
             screen.getByText('20 piece(s) is the minimum per transaction')
         ).toBeInTheDocument()

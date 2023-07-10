@@ -14,7 +14,6 @@ export interface AddToCartButtonProps {
 
 export interface RemoveFromCartButtonProps {
     id: string
-    amount: number
     onRemoveItem: (
         event: React.MouseEvent<HTMLButtonElement>,
         id: string

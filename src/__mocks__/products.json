@@ -3,7 +3,7 @@
     "id": "628639c1bcb9946a0c",
     "name": "Test Product 1",
     "img": "https://media.gettyimages.com/photos/bolts-and-nuts-picture-id175425827?s=2048x2048",
-    "availableAmount": 1000,
+    "availableAmount": 978,
     "minOrderAmount": 20,
     "price": 0.2
   },

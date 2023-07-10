@@ -14,7 +14,6 @@ describe('renders the Cart Buttons component', () => {
             return render(
                 <CartButtons
                     id={cartItem.id}
-                    amount={cartItem.amount}
                     onRemoveItem={onRemoveItem}
                     onUpdateItem={onUpdateItem}
                 />
